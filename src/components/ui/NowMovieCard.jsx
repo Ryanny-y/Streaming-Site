@@ -1,7 +1,7 @@
 const NowMovieCard = () => {
   return (
     <div className="flex items-center gap-4">
-      <div className="movie_poster">
+      <div id="movie_poster">
         <img
           src="images/borderlands.jpeg"
           alt="Movie Poster"
