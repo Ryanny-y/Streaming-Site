@@ -3,7 +3,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
   return (
-    <header id='header' className='fixed top-0 right-0 left-0 py-5'>
+    <header id='header' className='fixed top-0 right-0 left-0 py-5 z-40 bg-black'>
       <div className="container flex items-center justify-between gap-10">
         {/* NAVIGATION HEADER */}
         <nav id="header-nav">
