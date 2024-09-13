@@ -6,8 +6,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    container: {
+      center: true
+    },
+    extend: {
+      colors: {
+        "light-red": 'rgb(211, 119, 119)'
+      }
+    },
   },
   plugins: [],
 }
-
