@@ -3,14 +3,14 @@ import NowMovieCard from "../../ui/NowMovieCard"
 
 const NowPlaying = () => {
   return (
-    <section id="now-playing">
+    <section id="now_playing">
       <div className="container flex flex-col gap-10">
-        <SectionTitle title="Now Playing Movies" section="now-playing"/>    
+        <SectionTitle title="Now Playing Movies" section="now_playing"/>    
 
         <div className="slider-wrapper">
           <swiper-container
-            navigation-next-el=".now-playing.next-btn"
-            navigation-prev-el=".now-playing.prev-btn"
+            navigation-next-el=".now_playing.next-btn"
+            navigation-prev-el=".now_playing.prev-btn"
             breakpoints= {
               JSON.stringify({
                   640:{

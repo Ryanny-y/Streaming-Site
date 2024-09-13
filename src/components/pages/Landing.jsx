@@ -3,6 +3,7 @@ import Hero from "./landing/Hero"
 import Trending from "./landing/Trending"
 import PopularMovie from "./landing/PopularMovie"
 import POpularSeries from './landing/PopularSeries'
+import DiscoverMovie from "./landing/DiscoverMovie"
 
 const Landing = () => {
   return (
@@ -12,6 +13,7 @@ const Landing = () => {
       <Trending />
       <PopularMovie />
       <POpularSeries />
+      <DiscoverMovie />
     </main>
   )
 }
