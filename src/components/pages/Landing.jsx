@@ -1,7 +1,8 @@
 import NowPlaying from "./landing/NowPlaying"
 import Hero from "./landing/Hero"
 import Trending from "./landing/Trending"
-import Popular from "./landing/Popular"
+import PopularMovie from "./landing/PopularMovie"
+import POpularSeries from './landing/PopularSeries'
 
 const Landing = () => {
   return (
@@ -9,7 +10,8 @@ const Landing = () => {
       <Hero />
       <NowPlaying />
       <Trending />
-      <Popular />
+      <PopularMovie />
+      <POpularSeries />
     </main>
   )
 }

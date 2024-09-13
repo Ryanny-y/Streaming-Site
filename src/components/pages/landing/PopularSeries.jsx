@@ -1,16 +1,16 @@
 import SectionTitle from '../../ui/SectionTitle'
-import MovieCard from '../../ui/MovieCard'
+import SeriesCard from '../../ui/SeriesCard'
 
-const Popular = () => {
+const PopularMovie = () => {
   return (
     <section id="popular">
       <div className="container flex flex-col gap-10">
-        <SectionTitle title="Popular Movies" section="popular"/>
+        <SectionTitle title="Popular Series" section="popular_series"/>
 
         <div className="swiper-wrapper">
           <swiper-container
-            navigation-next-el=".popular.next-btn"
-            navigation-prev-el=".popular.prev-btn"
+            navigation-next-el=".popular_series.next-btn"
+            navigation-prev-el=".popular_series.prev-btn"
             breakpoints= {
               JSON.stringify({
                   640:{
@@ -30,11 +30,11 @@ const Popular = () => {
               })
             }
             >
-            <swiper-slide><MovieCard /></swiper-slide>
-            <swiper-slide><MovieCard /></swiper-slide>
-            <swiper-slide><MovieCard /></swiper-slide>
-            <swiper-slide><MovieCard /></swiper-slide>
-            <swiper-slide><MovieCard /></swiper-slide>
+            <swiper-slide><SeriesCard /></swiper-slide>
+            <swiper-slide><SeriesCard /></swiper-slide>
+            <swiper-slide><SeriesCard /></swiper-slide>
+            <swiper-slide><SeriesCard /></swiper-slide>
+            <swiper-slide><SeriesCard /></swiper-slide>
           </swiper-container>
         </div>
       </div>
@@ -42,4 +42,4 @@ const Popular = () => {
   )
 }
 
-export default Popular
+export default PopularMovie
