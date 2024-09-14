@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useGetmovies = (url) => {
+const useGetMovies = (url) => {
   const apiKey = import.meta.env.VITE_API_KEY;
   const [movieData, setMovieData] = useState({});
   const [error, setError] = useState(null);
@@ -9,10 +9,10 @@ const useGetmovies = (url) => {
   useEffect(() => {
     const controller = new AbortController();
 
-    const getMovieData = async (baseUrl) => {
+    const getMovieData = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(baseUrl, {
+        const response = await fetch(url, {
           method: 'GET',
           headers: {
             accept: 'application/json',
@@ -36,7 +36,7 @@ const useGetmovies = (url) => {
       }
     };
 
-    getMovieData(url);
+    getMovieData();
 
     return () => {
       controller.abort();
@@ -50,4 +50,4 @@ const useGetmovies = (url) => {
   };
 };
 
-export default useGetmovies;
+export default useGetMovies;

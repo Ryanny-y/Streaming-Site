@@ -18,23 +18,27 @@ const TrendingMovieCard = ({ movieId }) => {
 
   return (
     <>
-      {Object.keys(details)?.length && (
+      {Object.keys(details)?.length ? (
         <div className="flex flex-col gap-3">
           <div id="movie_poster" className="relative">
             <img
-              src={`https://image.tmdb.org/t/p/w500/${details.poster_path}`}
+              src={`https://image.tmdb.org/t/p/w500/${details?.poster_path}`}
               alt="Movie Poster"
               className="h-80 w-full brightness-75 rounded-lg"
             />
 
             <h1 id="time" className="absolute top-3 left-3 text-sm">
               <FontAwesomeIcon icon={faClock} />
-              <span className="ml-1 tracking-wide">{formatDuration(details.runtime)}</span>
+              <span className="ml-1 tracking-wide">
+                {formatDuration(details.runtime)}
+              </span>
             </h1>
 
             <h1 id="rating" className="absolute top-3 right-3 text-sm">
               <FontAwesomeIcon icon={faStar} className="text-yellow-300" />
-              <span className="ml-1 tracking-wide">{formatRatings(details.vote_average)}</span>
+              <span className="ml-1 tracking-wide">
+                {formatRatings(details.vote_average)}
+              </span>
             </h1>
           </div>
 
@@ -43,11 +47,13 @@ const TrendingMovieCard = ({ movieId }) => {
           </h1>
 
           <div id="genres" className="flex items-center gap-2">
-              {details.genres.map((genre) => (
-                <GenreCard key={genre.id} genre={genre.name} />
-              ))}
+            {details.genres.map((genre) => (
+              <GenreCard key={genre.id} genre={genre.name} />
+            ))}
           </div>
         </div>
+      ) : (
+        <p>Loading</p>
       )}
     </>
   );

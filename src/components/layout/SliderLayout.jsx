@@ -7,12 +7,12 @@ const SliderLayout = ({ children, section = '', slidesPerViewArr = [1, 2, 4]}) =
         navigation-next-el={`.${section}.next-btn`}
         navigation-prev-el={`.${section}.prev-btn`}
         breakpoints={JSON.stringify({
-          640: {
+          540: {
             slidesPerView: slidesPerViewArr[0],
             spaceBetween: 10,
           },
 
-          768: {
+          568: {
             slidesPerView: slidesPerViewArr[1],
             spaceBetween: 20,
           },

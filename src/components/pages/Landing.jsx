@@ -13,7 +13,7 @@ const Landing = () => {
       <Trending />
       <PopularMovie />
       <POpularSeries />
-      {/* <DiscoverMovie /> */}
+      <DiscoverMovie />
     </main>
   )
 }

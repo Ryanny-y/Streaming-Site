@@ -9,6 +9,28 @@ body {
   padding-bottom: 5rem;
 }
 
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  @apply bg-red-600 !important;
+  content: '';
+  position: absolute;
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  bottom: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+.nav-link:hover::after {
+  opacity: 1;
+}
+
 .swiper-button-disabled{
   display:none;   
 }
