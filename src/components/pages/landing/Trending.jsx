@@ -1,44 +1,38 @@
-import SectionTitle from '../../common/SectionTitle';
-import TrendingMovieCard from '../../ui/TrendingMovieCard';
+import SectionTitle from "../../common/SectionTitle";
+import TrendingMovieCard from "../../ui/TrendingMovieCard";
+import SliderLayout from "../../layout/SliderLayout";
+import useGetMovies from "../../../utils/hooks/useGetMovies";
+import { useEffect, useState } from "react";
 
 const Trending = () => {
+  const [movies, setMovies] = useState([]);
+  const { movieData, error, isLoading } = useGetMovies(
+    "https://api.themoviedb.org/3/trending/movie/day"
+  );
+
+  useEffect(() => {
+    if (movieData?.results?.length && !error && !isLoading) {
+      setMovies(movieData.results.slice(0, 9));
+    }
+  }, [error, isLoading]);
+
   return (
     <section id="trending">
       <div className="flex flex-col gap-10">
-        <SectionTitle title="Trending" section="trending"/>
+        <SectionTitle title="Trending" section="trending" />
 
-        <div className="swiper-wrapper">
-          <swiper-container
-            navigation-next-el=".trending.next-btn"
-            navigation-prev-el=".trending.prev-btn"
-            breakpoints= {
-              JSON.stringify({
-                  640:{
-                      slidesPerView: 1,
-                      spaceBetween: 20,
-                  },
-
-                  768: {
-                      slidesPerView: 2,
-                      spaceBetween: 40,
-                  },
-
-                  1024: {
-                      slidesPerView: 3,
-                      spaceBetween: 30,
-                  }
-              })
-            }
-          >
-            <swiper-slide><TrendingMovieCard /></swiper-slide>
-            <swiper-slide><TrendingMovieCard /></swiper-slide>
-            <swiper-slide><TrendingMovieCard /></swiper-slide>
-            <swiper-slide><TrendingMovieCard /></swiper-slide>
-          </swiper-container>
-        </div>
+        {movies.length && (
+          <SliderLayout section="trending" slidesPerViewArr={[1, 2, 3]}>
+            {movies.map(movie => 
+              <swiper-slide key={movie.id}>
+                <TrendingMovieCard movieDetails={movie}/>
+              </swiper-slide>
+            )}
+          </SliderLayout>
+        )}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Trending
+export default Trending;

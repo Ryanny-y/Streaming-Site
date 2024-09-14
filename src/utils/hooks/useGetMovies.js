@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 
-const getMovies = (url) => {
+const useGetmovies = (url) => {
+  const apiKey = import.meta.env.VITE_API_KEY;
   const [movieData, setMovieData] = useState({});
-  const [isError, setIsError] = useState(null);
+  const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -15,7 +16,7 @@ const getMovies = (url) => {
           method: 'GET',
           headers: {
             accept: 'application/json',
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZTg3MWZkMTBmMGFjOGRhNjA4M2QyNGVmMmFlMTAwMiIsIm5iZiI6MTcyNjIwMzAyMy40NDY2MzEsInN1YiI6IjY2ODU2N2Y3NzU0OTI2ZDRlZDNiMjg4OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.KEO2KxPShmWgDYLu4I8oukz7Ix2fHLDVVSI4GCZRAeY`
+            Authorization: `Bearer ${apiKey}`
           },
           signal: controller.signal,
         });
@@ -25,10 +26,10 @@ const getMovies = (url) => {
 
         const data = await response.json();
         setMovieData(data);
-        setIsError(null);
+        setError(null);
       } catch (error) {
         alert(error.message)
-        setIsError(true);
+        setError(error);
         setMovieData([]);
       } finally {
         setIsLoading(false);
@@ -44,9 +45,9 @@ const getMovies = (url) => {
 
   return {
     movieData,
-    isError,
+    error,
     isLoading,
   };
 };
 
-export default getMovies;
+export default useGetmovies;
