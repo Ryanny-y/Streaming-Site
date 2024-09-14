@@ -1,33 +1,35 @@
 import SectionTitle from "../../common/SectionTitle";
 import NowMovieCard from "../../ui/NowMovieCard";
 import SliderLayout from "../../layout/SliderLayout";
+import getMovie from "../../../utils/hooks/useGetMovies";
+import { useEffect, useState } from "react";
 
 const NowPlaying = () => {
+  const [movies, setMovies] = useState([]);
+  const { movieData, isError, isLoading } = getMovie(
+    "https://api.themoviedb.org/3/movie/now_playing"
+  );
+
+  useEffect(() => {
+    if (movieData?.results?.length && !isError && !isLoading) {
+      setMovies(movieData.results.slice(0, 8));
+    }
+  }, [movieData?.results?.length, isError, isLoading]);
+
   return (
     <section id="now_playing">
       <div className="flex flex-col gap-10">
         <SectionTitle title="Now Playing Movies" section="now_playing" />
 
-        <SliderLayout section="now_playing" slidesPerViewArr={[1, 3, 4]}>
-          <swiper-slide lazy="true">
-            <NowMovieCard />
-          </swiper-slide>
-          <swiper-slide lazy="true">
-            <NowMovieCard />
-          </swiper-slide>
-          <swiper-slide lazy="true">
-            <NowMovieCard />
-          </swiper-slide>
-          <swiper-slide lazy="true">
-            <NowMovieCard />
-          </swiper-slide>
-          <swiper-slide lazy="true">
-            <NowMovieCard />
-          </swiper-slide>
-          <swiper-slide lazy="true">
-            <NowMovieCard />
-          </swiper-slide>
-        </SliderLayout>
+        {movies.length && (
+          <SliderLayout section="now_playing" slidesPerViewArr={[1, 3, 4]}>
+            {movies.map(movie => 
+              <swiper-slide key={movie.id} lazy="true">
+                <NowMovieCard movieDetails={movie}/>
+              </swiper-slide>
+            )}
+          </SliderLayout>
+        )}
       </div>
     </section>
   );

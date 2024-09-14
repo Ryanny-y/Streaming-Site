@@ -1,8 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { faBookmark, faHeart } from "@fortawesome/free-regular-svg-icons";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
+
+  const navigate = useNavigate();
+
   return (
     <header
       id="header"
@@ -43,6 +47,18 @@ const Header = () => {
             placeholder="Search Show."
           />
           <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </div>
+
+        {/* WATCHLIST AND FAVORITES */}
+        <div className="flex items-center gap-4 text-white text-xl -mr-7">
+          <span className="relative group">
+            <FontAwesomeIcon icon={faBookmark} className="text-yellow-500"/>
+            <p className="text-xs absolute top-8 text-nowrap group-hover:opacity-100 left-0 opacity-0 duration-200 transition-all">Add To Watchlist</p>
+          </span>
+          <span className="relative group">
+            <FontAwesomeIcon icon={faHeart} className="text-red-600"/>
+            <p className="text-xs absolute top-8 text-nowrap group-hover:opacity-100 left-0 opacity-0 duration-200 transition-all">Add To Favorites</p>
+          </span>
         </div>
 
         {/* LOGIN/REGISTER */}

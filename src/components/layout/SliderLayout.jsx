@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-const SliderLayout = ({ children, section, slidesPerViewArr }) => {
+const SliderLayout = ({ children, section = '', slidesPerViewArr = [1, 2, 4]}) => {
   return (
     <div className="slider-wrapper">
       <swiper-container
@@ -34,9 +34,4 @@ export default SliderLayout;
 SliderLayout.propTypes = {
   section: PropTypes.string,
   slidesPerViewArr: PropTypes.array
-}
-
-SliderLayout.defaultProps = {
-  name: '',
-  slidesPerViewArr: [1, 2, 4]
 }
