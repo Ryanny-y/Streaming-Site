@@ -28,7 +28,7 @@ const useGetmovies = (url) => {
         setMovieData(data);
         setError(null);
       } catch (error) {
-        alert(error.message)
+        console.log(error.message)
         setError(error);
         setMovieData([]);
       } finally {

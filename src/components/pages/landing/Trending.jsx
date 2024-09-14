@@ -25,7 +25,7 @@ const Trending = () => {
           <SliderLayout section="trending" slidesPerViewArr={[1, 2, 3]}>
             {movies.map(movie => 
               <swiper-slide key={movie.id}>
-                <TrendingMovieCard movieDetails={movie}/>
+                <TrendingMovieCard movieId={movie.id}/>
               </swiper-slide>
             )}
           </SliderLayout>
