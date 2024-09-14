@@ -1,11 +1,11 @@
-import SectionTitle from '../../ui/SectionTitle'
-import MovieCard from '../../ui/MovieCard'
+import SectionTitle from '../../common/SectionTitle'
+import MovieCardNoBg from '../../ui/MovieCardNoBg'
 
 
 const DiscoverMovie = () => {
   return (
     <section id="discover_movies">
-      <div className="container flex flex-col gap-10">
+      <div className="flex flex-col gap-10">
         <SectionTitle title="Discover Movies" section="discover_movies"/>
 
         <div className="slider-wrapper h-full">
@@ -33,16 +33,16 @@ const DiscoverMovie = () => {
               })
             }
           >
-            <swiper-slide lazy="true"><MovieCard/></swiper-slide>
-            <swiper-slide lazy="true"><MovieCard/></swiper-slide>
-            <swiper-slide lazy="true"><MovieCard/></swiper-slide>
-            <swiper-slide lazy="true"><MovieCard/></swiper-slide>
-            <swiper-slide lazy="true"><MovieCard/></swiper-slide>
-            <swiper-slide lazy="true"><MovieCard/></swiper-slide>
-            <swiper-slide lazy="true"><MovieCard/></swiper-slide>
-            <swiper-slide lazy="true"><MovieCard/></swiper-slide>
-            <swiper-slide lazy="true"><MovieCard/></swiper-slide>
-            <swiper-slide lazy="true"><MovieCard/></swiper-slide>
+            <swiper-slide lazy="true"><MovieCardNoBg/></swiper-slide>
+            <swiper-slide lazy="true"><MovieCardNoBg/></swiper-slide>
+            <swiper-slide lazy="true"><MovieCardNoBg/></swiper-slide>
+            <swiper-slide lazy="true"><MovieCardNoBg/></swiper-slide>
+            <swiper-slide lazy="true"><MovieCardNoBg/></swiper-slide>
+            <swiper-slide lazy="true"><MovieCardNoBg/></swiper-slide>
+            <swiper-slide lazy="true"><MovieCardNoBg/></swiper-slide>
+            <swiper-slide lazy="true"><MovieCardNoBg/></swiper-slide>
+            <swiper-slide lazy="true"><MovieCardNoBg/></swiper-slide>
+            <swiper-slide lazy="true"><MovieCardNoBg/></swiper-slide>
           </swiper-container>
 
         </div>

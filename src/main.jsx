@@ -4,6 +4,7 @@ import './index.css'
 import { register } from 'swiper/element/bundle';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Landing from './components/pages/Landing.jsx';
+import Movies from './components/pages/Movies.jsx';
 
 register();
 const router = createBrowserRouter([
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Landing />
+      },
+      {
+        path: 'movies',
+        element: <Movies />
       }
     ]
   }

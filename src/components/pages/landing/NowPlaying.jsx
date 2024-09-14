@@ -1,47 +1,36 @@
-import SectionTitle from "../../ui/SectionTitle"
-import NowMovieCard from "../../ui/NowMovieCard"
+import SectionTitle from "../../common/SectionTitle";
+import NowMovieCard from "../../ui/NowMovieCard";
+import SliderLayout from "../../layout/SliderLayout";
 
 const NowPlaying = () => {
   return (
     <section id="now_playing">
-      <div className="container flex flex-col gap-10">
-        <SectionTitle title="Now Playing Movies" section="now_playing"/>    
+      <div className="flex flex-col gap-10">
+        <SectionTitle title="Now Playing Movies" section="now_playing" />
 
-        <div className="slider-wrapper">
-          <swiper-container
-            navigation-next-el=".now_playing.next-btn"
-            navigation-prev-el=".now_playing.prev-btn"
-            breakpoints= {
-              JSON.stringify({
-                  640:{
-                      slidesPerView: 1,
-                      spaceBetween: 20,
-                  },
-  
-                  768: {
-                      slidesPerView: 3,
-                      spaceBetween: 40,
-                  },
-  
-                  1024: {
-                      slidesPerView: 4,
-                      spaceBetween: 30,
-                  }
-              })
-            }
-          >
-            <swiper-slide lazy="true"><NowMovieCard/></swiper-slide>
-            <swiper-slide lazy="true"><NowMovieCard/></swiper-slide>
-            <swiper-slide lazy="true"><NowMovieCard/></swiper-slide>
-            <swiper-slide lazy="true"><NowMovieCard/></swiper-slide>
-            <swiper-slide lazy="true"><NowMovieCard/></swiper-slide>
-            <swiper-slide lazy="true"><NowMovieCard/></swiper-slide>
-          </swiper-container>
-
-        </div>
+        <SliderLayout section="now_playing" slidesPerViewArr={[1, 3, 4]}>
+          <swiper-slide lazy="true">
+            <NowMovieCard />
+          </swiper-slide>
+          <swiper-slide lazy="true">
+            <NowMovieCard />
+          </swiper-slide>
+          <swiper-slide lazy="true">
+            <NowMovieCard />
+          </swiper-slide>
+          <swiper-slide lazy="true">
+            <NowMovieCard />
+          </swiper-slide>
+          <swiper-slide lazy="true">
+            <NowMovieCard />
+          </swiper-slide>
+          <swiper-slide lazy="true">
+            <NowMovieCard />
+          </swiper-slide>
+        </SliderLayout>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default NowPlaying
+export default NowPlaying;

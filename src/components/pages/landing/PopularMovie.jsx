@@ -1,10 +1,10 @@
-import SectionTitle from '../../ui/SectionTitle'
-import MovieCard from '../../ui/MovieCard'
+import SectionTitle from '../../common/SectionTitle'
+import MovieCardNoBg from '../../ui/MovieCardNoBg'
 
 const PopularMovie = () => {
   return (
     <section id="popular">
-      <div className="container flex flex-col gap-10">
+      <div className="flex flex-col gap-10">
         <SectionTitle title="Popular Movies" section="popular_movies"/>
 
         <div className="swiper-wrapper">
@@ -30,11 +30,11 @@ const PopularMovie = () => {
               })
             }
             >
-            <swiper-slide><MovieCard /></swiper-slide>
-            <swiper-slide><MovieCard /></swiper-slide>
-            <swiper-slide><MovieCard /></swiper-slide>
-            <swiper-slide><MovieCard /></swiper-slide>
-            <swiper-slide><MovieCard /></swiper-slide>
+            <swiper-slide><MovieCardNoBg /></swiper-slide>
+            <swiper-slide><MovieCardNoBg /></swiper-slide>
+            <swiper-slide><MovieCardNoBg /></swiper-slide>
+            <swiper-slide><MovieCardNoBg /></swiper-slide>
+            <swiper-slide><MovieCardNoBg /></swiper-slide>
           </swiper-container>
         </div>
       </div>

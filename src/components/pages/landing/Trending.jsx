@@ -1,10 +1,10 @@
-import SectionTitle from '../../ui/SectionTitle';
+import SectionTitle from '../../common/SectionTitle';
 import TrendingMovieCard from '../../ui/TrendingMovieCard';
 
 const Trending = () => {
   return (
     <section id="trending">
-      <div className="container flex flex-col gap-10">
+      <div className="flex flex-col gap-10">
         <SectionTitle title="Trending" section="trending"/>
 
         <div className="swiper-wrapper">
