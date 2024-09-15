@@ -20,9 +20,9 @@ const PopularMovies = () => {
     <>
       {movies.length > 0 ? (
         <section id="popular_movies" className="flex flex-col gap-5">
-          <SectionTitle title="Popular Movies" section="popular_movies" />
+          <SectionTitle title="Popular" section="popular_movies" />
 
-          <SliderLayout section="popular_movies" slidesPerViewArr={[1, 3, 5]}>
+          <SliderLayout section="popular_movies" slidesPerViewArr={[2, 3, 5]}>
             {movies.map(movie => 
               <swiper-slide kay={movie.id} style={{ height: 'auto' }}>
                 <MovieCard movieId={movie.id}/>

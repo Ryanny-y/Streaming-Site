@@ -20,9 +20,9 @@ const UpcomingMovies = () => {
     <>
       {movies.length > 0 ? (
         <section id="upcoming_movies" className="flex flex-col gap-5">
-          <SectionTitle title="Now Playing Movies" section="upcoming_movies" />
+          <SectionTitle title="Upcoming" section="upcoming_movies" />
 
-          <SliderLayout section="upcoming_movies" slidesPerViewArr={[1, 3, 5]}>
+          <SliderLayout section="upcoming_movies" slidesPerViewArr={[2, 3, 5]}>
             {movies.map((movie) => (
               <swiper-slide kay={movie.id} style={{ height: "auto" }}>
                 <MovieCard movieId={movie.id} />

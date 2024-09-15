@@ -1,5 +1,5 @@
 import SectionTitle from "../../common/SectionTitle";
-import SeriesCard from "../../ui/SeriesCard";
+import SeriesCardNoBg from "../../ui/SeriesCardNoBg";
 import SliderLayout from "../../layout/SliderLayout";
 import useGetShows from "../../../utils/hooks/useGetShows";
 import { useEffect, useState } from "react";
@@ -26,7 +26,7 @@ const PopularMovie = () => {
           {series.length &&
             series.map((show) => (
               <swiper-slide key={show.id}>
-                <SeriesCard seriesId={show.id}/>
+                <SeriesCardNoBg seriesId={show.id}/>
               </swiper-slide>
             ))}
         </SliderLayout>

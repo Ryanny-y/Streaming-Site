@@ -1,13 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { useState, useEffect } from "react";
 import useGetShowDetails from "../../utils/hooks/useGetShowDetails";
-import { useEffect, useState } from "react";
-import { formatRatings, formatDuration } from "../../utils/formatter";
+import { formatRatings } from "../../utils/formatter";
 
-const MovieCardNoBg = ({ movieId }) => {
+const SeriesCardNoBg = ({ seriesId }) => {
   const [details, setDetails] = useState({});
-  const { showDetails, error, isLoading } = useGetShowDetails('movie', movieId);
+  const { showDetails, error, isLoading } = useGetShowDetails("tv", seriesId);
 
   useEffect(() => {
     if (Object.keys(showDetails)?.length && !error && !isLoading) {
@@ -28,10 +27,10 @@ const MovieCardNoBg = ({ movieId }) => {
           </div>
 
           <h1 id="title" className="text-xl font-semibold tracking-wide">
-            {details.original_title}
+            {details.name}
           </h1>
 
-          <div id="rating_duration" className="flex items-center gap-3 text-sm">
+          <div id="rating_duration" className="flex items-center gap-4 text-sm">
             <p>
               <FontAwesomeIcon icon={faStar} className="text-yellow-500" />
               <span className="ml-1">
@@ -39,8 +38,8 @@ const MovieCardNoBg = ({ movieId }) => {
               </span>
             </p>
             <p>
-              <FontAwesomeIcon icon={faClock} />
-              <span className="ml-1">{formatDuration(details.runtime)}</span>
+              Series/S {details.number_of_seasons}/EP{" "}
+              {details.number_of_episodes}
             </p>
           </div>
         </div>
@@ -51,4 +50,4 @@ const MovieCardNoBg = ({ movieId }) => {
   );
 };
 
-export default MovieCardNoBg;
+export default SeriesCardNoBg;

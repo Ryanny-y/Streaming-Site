@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 const useGetShowDetails = (film, id) => {
   const apiKey = import.meta.env.VITE_API_KEY;
-  const [movieDetails, setMovieDetails] = useState({});
+  const [showDetails, setShowDetails] = useState({});
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -32,13 +32,13 @@ const useGetShowDetails = (film, id) => {
         }
 
         const data = await response.json();
-        setMovieDetails(data);        
+        setShowDetails(data);        
         setError(null);
 
       } catch (error) {
         console.log(error.message);
         setError(error.message);
-        setMovieDetails({})
+        setShowDetails({})
       } finally {
         setIsLoading(false);
       }
@@ -51,7 +51,7 @@ const useGetShowDetails = (film, id) => {
     };
   }, [id]);
 
-  return { movieDetails, error, isLoading };
+  return { showDetails, error, isLoading };
 };
 
 export default useGetShowDetails;

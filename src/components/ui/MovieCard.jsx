@@ -9,16 +9,16 @@ import { formatRatings, formatDuration } from "../../utils/formatter";
 
 const MovieCard = ({ movieId }) => {
   const [details, setDetails] = useState({});
-  const { movieDetails, error, isLoading } = useGetShowDetails(
+  const { showDetails, error, isLoading } = useGetShowDetails(
     "movie",
     movieId
   );
 
   useEffect(() => {
-    if (Object.keys(movieDetails)?.length && !error && !isLoading) {
-      setDetails(movieDetails);
+    if (Object.keys(showDetails)?.length && !error && !isLoading) {
+      setDetails(showDetails);
     }
-  }, [movieDetails, error, isLoading]);
+  }, [showDetails, error, isLoading]);
 
   return (
     <>

@@ -5,6 +5,7 @@ import { register } from 'swiper/element/bundle';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Landing from './components/pages/Landing.jsx';
 import Movies from './components/pages/Movies.jsx';
+import TvSeries from './components/pages/TvSeries.jsx';
 
 register();
 const router = createBrowserRouter([
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: 'movies',
         element: <Movies />
+      },
+      {
+        path: 'series',
+        element: <TvSeries />
       }
     ]
   }

@@ -8,13 +8,13 @@ import { formatRatings, formatDuration } from "../../utils/formatter";
 
 const TrendingMovieCard = ({ movieId }) => {
   const [details, setDetails] = useState({});
-  const { movieDetails, error, isLoading } = useGetShowDetails('movie', movieId);
+  const { showDetails, error, isLoading } = useGetShowDetails('movie', movieId);
 
   useEffect(() => {
-    if (Object.keys(movieDetails)?.length && !error && !isLoading) {
-      setDetails(movieDetails);
+    if (Object.keys(showDetails)?.length && !error && !isLoading) {
+      setDetails(showDetails);
     }
-  }, [movieDetails, error, isLoading]);
+  }, [showDetails, error, isLoading]);
 
   return (
     <>
