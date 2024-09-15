@@ -1,13 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import useGetMovieDetails from "../../utils/hooks/useGetMovieDetails";
+import useGetShowDetails from "../../utils/hooks/useGetShowDetails";
 import { useEffect, useState } from "react";
 import { formatRatings, formatDuration } from "../../utils/formatter";
 
 const MovieCardNoBg = ({ movieId }) => {
   const [details, setDetails] = useState({});
-  const { movieDetails, error, isLoading } = useGetMovieDetails(movieId);
+  const { movieDetails, error, isLoading } = useGetShowDetails('movie', movieId);
 
   useEffect(() => {
     if (Object.keys(movieDetails)?.length && !error && !isLoading) {

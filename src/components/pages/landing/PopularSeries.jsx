@@ -1,45 +1,38 @@
-import SectionTitle from '../../common/SectionTitle'
-import SeriesCard from '../../ui/SeriesCard'
+import SectionTitle from "../../common/SectionTitle";
+import SeriesCard from "../../ui/SeriesCard";
+import SliderLayout from "../../layout/SliderLayout";
+import useGetShows from "../../../utils/hooks/useGetShows";
+import { useEffect, useState } from "react";
 
 const PopularMovie = () => {
+  const [series, setSeries] = useState([]);
+
+  const { showData, error, isLoading } = useGetShows(
+    "https://api.themoviedb.org/3/tv/popular"
+  );
+
+  useEffect(() => {
+    if (showData?.results?.length && !error && !isLoading) {
+      setSeries(showData.results.slice(0, 9));
+    }
+  }, [showData?.results?.length, error, isLoading]);
+
   return (
     <section id="popular">
       <div className="flex flex-col gap-10">
-        <SectionTitle title="Popular Series" section="popular_series"/>
+        <SectionTitle title="Popular Series" section="popular_series" />
 
-        <div className="swiper-wrapper">
-          <swiper-container
-            navigation-next-el=".popular_series.next-btn"
-            navigation-prev-el=".popular_series.prev-btn"
-            breakpoints= {
-              JSON.stringify({
-                  640:{
-                      slidesPerView: 1,
-                      spaceBetween: 20,
-                  },
-  
-                  768: {
-                      slidesPerView: 3,
-                      spaceBetween: 40,
-                  },
-  
-                  1024: {
-                      slidesPerView: 4,
-                      spaceBetween: 30,
-                  }
-              })
-            }
-            >
-            <swiper-slide><SeriesCard /></swiper-slide>
-            <swiper-slide><SeriesCard /></swiper-slide>
-            <swiper-slide><SeriesCard /></swiper-slide>
-            <swiper-slide><SeriesCard /></swiper-slide>
-            <swiper-slide><SeriesCard /></swiper-slide>
-          </swiper-container>
-        </div>
+        <SliderLayout section="popular_series" slidesPerViewArr={[1, 3, 4]}>
+          {series.length &&
+            series.map((show) => (
+              <swiper-slide key={show.id}>
+                <SeriesCard seriesId={show.id}/>
+              </swiper-slide>
+            ))}
+        </SliderLayout>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default PopularMovie
+export default PopularMovie;

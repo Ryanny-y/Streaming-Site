@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useGetMovieDetails = (id) => {
+const useGetShowDetails = (film, id) => {
   const apiKey = import.meta.env.VITE_API_KEY;
   const [movieDetails, setMovieDetails] = useState({});
   const [error, setError] = useState(null);
@@ -13,7 +13,7 @@ const useGetMovieDetails = (id) => {
       setIsLoading(true);
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/movie/${id}`,
+          `https://api.themoviedb.org/3/${film}/${id}`,
           {
             method: "GET",
             headers: {
@@ -54,4 +54,4 @@ const useGetMovieDetails = (id) => {
   return { movieDetails, error, isLoading };
 };
 
-export default useGetMovieDetails;
+export default useGetShowDetails;

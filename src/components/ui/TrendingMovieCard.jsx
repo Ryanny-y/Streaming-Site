@@ -3,12 +3,12 @@ import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import GenreCard from "./GenreCard";
 import { useEffect, useState } from "react";
-import useGetMovieDetails from "../../utils/hooks/useGetMovieDetails";
+import useGetShowDetails from "../../utils/hooks/useGetShowDetails";
 import { formatRatings, formatDuration } from "../../utils/formatter";
 
 const TrendingMovieCard = ({ movieId }) => {
   const [details, setDetails] = useState({});
-  const { movieDetails, error, isLoading } = useGetMovieDetails(movieId);
+  const { movieDetails, error, isLoading } = useGetShowDetails('movie', movieId);
 
   useEffect(() => {
     if (Object.keys(movieDetails)?.length && !error && !isLoading) {

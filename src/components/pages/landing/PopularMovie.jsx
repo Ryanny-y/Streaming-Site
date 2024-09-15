@@ -23,7 +23,7 @@ const PopularMovie = () => {
         <SectionTitle title="Popular Movies" section="popular_movies" />
 
         <SliderLayout section="popular_movies" slidesPerViewArr={[1, 3, 4]}>
-          {movies && 
+          {movies.length && 
             movies.map(movie => 
               <swiper-slide key={movie.id}>
                 <MovieCardNoBg movieId={movie.id}/>
