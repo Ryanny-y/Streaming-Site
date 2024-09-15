@@ -23,15 +23,13 @@ const NowPlaying = () => {
           <div className="flex flex-col gap-10">
             <SectionTitle title="Now Playing Movies" section="now_playing" />
 
-            {movies.length && (
-              <SliderLayout section="now_playing" slidesPerViewArr={[1, 2, 4]}>
-                {movies.map((movie) => (
-                  <swiper-slide key={movie.id} lazy="true">
-                    <NowMovieCard movieDetails={movie} />
-                  </swiper-slide>
-                ))}
-              </SliderLayout>
-            )}
+            <SliderLayout section="now_playing" slidesPerViewArr={[2, 2, 4]}>
+              {movies.map((movie) => (
+                <swiper-slide key={movie.id} lazy="true">
+                  <NowMovieCard movieDetails={movie} />
+                </swiper-slide>
+              ))}
+            </SliderLayout>
           </div>
         </section>
       ) : (

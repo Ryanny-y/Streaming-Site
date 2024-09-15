@@ -6,13 +6,13 @@ import { useEffect, useState } from "react";
 
 const Trending = () => {
   const [movies, setMovies] = useState([]);
-  const { movieData, error, isLoading } = useGetShows(
+  const { showData, error, isLoading } = useGetShows(
     "https://api.themoviedb.org/3/trending/movie/day"
   );
 
   useEffect(() => {
-    if (movieData?.results?.length > 0 && !error && !isLoading) {
-      setMovies(movieData.results.slice(0, 9));
+    if (showData?.results?.length > 0 && !error && !isLoading) {
+      setMovies(showData.results.slice(0, 9));
     }
   }, [error, isLoading]);
 

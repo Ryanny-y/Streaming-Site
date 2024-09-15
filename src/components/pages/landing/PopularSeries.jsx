@@ -22,7 +22,7 @@ const PopularMovie = () => {
       <div className="flex flex-col gap-10">
         <SectionTitle title="Popular Series" section="popular_series" />
 
-        <SliderLayout section="popular_series" slidesPerViewArr={[1, 3, 4]}>
+        <SliderLayout section="popular_series" slidesPerViewArr={[2, 3, 4]}>
           {series.length &&
             series.map((show) => (
               <swiper-slide key={show.id}>
