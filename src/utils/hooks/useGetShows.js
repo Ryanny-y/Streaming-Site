@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-const useGetMovies = (url) => {
+const useGetShows = (url) => {
   const apiKey = import.meta.env.VITE_API_KEY;
-  const [movieData, setMovieData] = useState({});
+  const [showData, setShowData] = useState({});
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -25,12 +25,12 @@ const useGetMovies = (url) => {
         }
 
         const data = await response.json();
-        setMovieData(data);
+        setShowData(data);
         setError(null);
       } catch (error) {
         console.log(error.message)
         setError(error);
-        setMovieData([]);
+        setShowData([]);
       } finally {
         setIsLoading(false);
       }
@@ -44,10 +44,10 @@ const useGetMovies = (url) => {
   }, [url]);
 
   return {
-    movieData,
+    showData,
     error,
     isLoading,
   };
 };
 
-export default useGetMovies;
+export default useGetShows;

@@ -1,6 +1,6 @@
 import SectionTitle from "../../common/SectionTitle";
 import MovieCardNoBg from "../../ui/MovieCardNoBg";
-import useGetMovies from "../../../utils/hooks/useGetMovies";
+import useGetShows from "../../../utils/hooks/useGetShows";
 import { useEffect, useState, useRef } from "react";
 
 const DiscoverMovie = () => {
@@ -9,7 +9,7 @@ const DiscoverMovie = () => {
   const randomNum = randomRef.current;
 
   const [movies, setMovies] = useState([]);
-  const { movieData, error, isLoading } = useGetMovies(
+  const { showData, error, isLoading } = useGetShows(
     `https://api.themoviedb.org/3/discover/movie?page=${randomNum}`
   );
 
@@ -28,10 +28,10 @@ const DiscoverMovie = () => {
   }, []);
 
   useEffect(() => {
-    if (movieData?.results?.length > 0 && !error && !isLoading) {
-      setMovies(movieData.results);
+    if (showData?.results?.length > 0 && !error && !isLoading) {
+      setMovies(showData.results);
     }
-  }, [movieData?.results?.length, error, isLoading]);
+  }, [showData?.results?.length, error, isLoading]);
 
   return (
     <>

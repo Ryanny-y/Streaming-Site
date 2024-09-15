@@ -1,12 +1,12 @@
 import SectionTitle from "../../common/SectionTitle";
 import TrendingMovieCard from "../../ui/TrendingMovieCard";
 import SliderLayout from "../../layout/SliderLayout";
-import useGetMovies from "../../../utils/hooks/useGetMovies";
+import useGetShows from "../../../utils/hooks/useGetShows";
 import { useEffect, useState } from "react";
 
 const Trending = () => {
   const [movies, setMovies] = useState([]);
-  const { movieData, error, isLoading } = useGetMovies(
+  const { movieData, error, isLoading } = useGetShows(
     "https://api.themoviedb.org/3/trending/movie/day"
   );
 

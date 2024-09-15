@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const useGetMovieDetails = (id) => {
-  const apiKey = import.meta.env.API_KEY;
+  const apiKey = import.meta.env.VITE_API_KEY;
   const [movieDetails, setMovieDetails] = useState({});
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +19,7 @@ const useGetMovieDetails = (id) => {
             headers: {
               accept: "application/json",
               Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZTg3MWZkMTBmMGFjOGRhNjA4M2QyNGVmMmFlMTAwMiIsIm5iZiI6MTcyNjIwMzAyMy40NDY2MzEsInN1YiI6IjY2ODU2N2Y3NzU0OTI2ZDRlZDNiMjg4OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.KEO2KxPShmWgDYLu4I8oukz7Ix2fHLDVVSI4GCZRAeY",
+                `Bearer ${apiKey}`,
             },
             signal: controller.signal
           }

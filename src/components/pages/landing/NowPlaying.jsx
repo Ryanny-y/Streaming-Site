@@ -1,20 +1,20 @@
 import SectionTitle from "../../common/SectionTitle";
 import NowMovieCard from "../../ui/NowMovieCard";
 import SliderLayout from "../../layout/SliderLayout";
-import useGetMovies from "../../../utils/hooks/useGetMovies";
+import useGetShows from "../../../utils/hooks/useGetShows";
 import { useEffect, useState } from "react";
 
 const NowPlaying = () => {
   const [movies, setMovies] = useState([]);
-  const { movieData, error, isLoading } = useGetMovies(
+  const { showData, error, isLoading } = useGetShows(
     "https://api.themoviedb.org/3/movie/now_playing"
   );
 
   useEffect(() => {
-    if (movieData?.results?.length > 0 && !error && !isLoading) {
-      setMovies(movieData.results.slice(0, 8));
+    if (showData?.results?.length > 0 && !error && !isLoading) {
+      setMovies(showData.results.slice(0, 8));
     }
-  }, [movieData?.results?.length, error, isLoading]);
+  }, [showData?.results?.length, error, isLoading]);
 
   return (
     <>
