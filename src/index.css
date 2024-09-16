@@ -5,7 +5,6 @@
 
 body {
   background: #000;
-  padding-top: 76px;
   padding-bottom: 5rem;
 }
 
@@ -33,4 +32,10 @@ body {
 
 .swiper-button-disabled{
   display:none;   
+}
+
+.genre-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  row-gap: 15px;
 }

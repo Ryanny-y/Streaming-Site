@@ -26,7 +26,8 @@ export default {
     },
     extend: {
       colors: {
-        "light-red": 'rgb(211, 119, 119)'
+        "light-red": 'rgb(211, 119, 119)',
+        "charcoal": '#333333'
       },
       fontFamily: {
         'Poppins': ['Poppins', 'sans-serif']

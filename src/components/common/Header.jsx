@@ -11,14 +11,14 @@ const Header = () => {
   return (
     <header
       id="header"
-      className="fixed top-0 right-0 left-0 py-5 z-40 bg-black"
+      className="sticky top-0 py-5 z-40 bg-black"
     >
       <div className="container flex flex-wrap items-center justify-between gap-5 text-white">
         {/* NAVIGATION HEADER */}
         <nav id="header-nav">
           <FontAwesomeIcon icon={faBars} className="text-xl block md:hidden hover:text-red-600 duration-500" onClick={() => setShowNav(true)}/>
 
-          <ul className={`flex flex-wrap justify-center items-center gap-4 text-nowrap fixed bg-black ${showNav ? 'top-0' :'-top-1/2'} py-14 left-0 right-0 z-40 duration-700 transition-all px-5`}>
+          <ul className={`flex flex-wrap justify-center items-center gap-4 fixed bg-black ${showNav ? 'top-0' :'-top-1/2'} py-14 left-0 right-0 z-40 duration-700 transition-all px-5`}>
             <FontAwesomeIcon icon={faChevronUp} className="absolute top-5 right-5 font-semibold" onClick={() => setShowNav(false)}/>
             <li className="nav-link">
               <Link to="/">Home</Link>
@@ -30,14 +30,14 @@ const Header = () => {
               <Link to="series">TV Series</Link>
             </li>
             <li className="nav-link">
-              <Link to="genre">Genre</Link>
+              <Link to="genres">Genre</Link>
             </li>
             <li className="nav-link">
-              <Link to="country">Country</Link>
+              <Link to="countries">Country</Link>
             </li>
           </ul>
 
-          <ul className="hidden items-center gap-4 text-nowrap md:flex">
+          <ul className="hidden items-center gap-4 md:flex">
             <li className="nav-link">
               <Link to="/">Home</Link>
             </li>
@@ -48,7 +48,7 @@ const Header = () => {
               <Link to="series">TV Series</Link>
             </li>
             <li className="nav-link">
-              <Link to="genre">Genre</Link>
+              <Link to="genres">Genre</Link>
             </li>
             <li className="nav-link">
               <Link to="country">Country</Link>
@@ -75,13 +75,13 @@ const Header = () => {
         <div className="flex items-center gap-4 text-white text-xl">
           <span className="relative group">
             <FontAwesomeIcon icon={faBookmark} className="text-yellow-500" />
-            <p className="text-xs absolute top-8 text-nowrap group-hover:opacity-100 left-0 opacity-0 duration-200 transition-all">
+            <p className="text-xs absolute top-8 group-hover:opacity-100 left-0 opacity-0 duration-200 transition-all">
               Add To Watchlist
             </p>
           </span>
           <span className="relative group">
             <FontAwesomeIcon icon={faHeart} className="text-red-600" />
-            <p className="text-xs absolute top-8 text-nowrap group-hover:opacity-100 left-0 opacity-0 duration-200 transition-all">
+            <p className="text-xs absolute top-8 group-hover:opacity-100 left-0 opacity-0 duration-200 transition-all">
               Add To Favorites
             </p>
           </span>

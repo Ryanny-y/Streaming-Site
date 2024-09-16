@@ -47,7 +47,7 @@ const TrendingMovieCard = ({ movieId }) => {
           </h1>
 
           <div id="genres" className="flex items-center gap-2">
-            {details.genres.map((genre) => (
+            {details.genres.slice(0, 3).map((genre) => (
               <GenreCard key={genre.id} genre={genre.name} />
             ))}
           </div>

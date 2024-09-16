@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-const useGetGenres = (genreIds) => {
-  const apiKey = import.meta.env.API_KEY
+const useGetGenres = (film) => {
+  const apiKey = import.meta.env.VITE_API_KEY
   const [genreData, setGenreData] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -13,7 +13,7 @@ const useGetGenres = (genreIds) => {
       setIsLoading(true);
       try {
         const response = await fetch(
-          "https://api.themoviedb.org/3/genre/movie/list",
+          `https://api.themoviedb.org/3/genre/${film}/list`,
           {
             method: "GET",
             headers: {
@@ -29,11 +29,10 @@ const useGetGenres = (genreIds) => {
         }
 
         const data = await response.json();
-        const genres = data.genres.filter(genre => genreIds.some(id => genre.id === id));
-        setGenreData(genres.slice(0, 3));
+        setGenreData(data.genres)
         setError(null)
       } catch (error) {
-        alert(error);
+        console.log(error);
         setGenreData([]);
         setError(error);
       } finally {
@@ -46,7 +45,7 @@ const useGetGenres = (genreIds) => {
     return () => {
       controller.abort();
     };
-  }, [genreIds]);
+  }, []);
 
   return { genreData, error, isLoading };
 };

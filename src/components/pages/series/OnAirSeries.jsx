@@ -6,7 +6,6 @@ import SeriesCard from '../../ui/SeriesCard'
 
 const OnAirSeries = () => {
   const [series, setSeries] = useState([]);
-
   const { showData, error, isLoading } = useGetShows(
     "https://api.themoviedb.org/3/tv/on_the_air"
   );

@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Landing from './components/pages/Landing.jsx';
 import Movies from './components/pages/Movies.jsx';
 import TvSeries from './components/pages/TvSeries.jsx';
+import Genres from './components/pages/Genres.jsx';
 
 register();
 const router = createBrowserRouter([
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: 'series',
         element: <TvSeries />
+      },
+      {
+        path: 'genres',
+        element: <Genres />
       }
     ]
   }
