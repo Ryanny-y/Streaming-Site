@@ -7,6 +7,7 @@ import Landing from './components/pages/Landing.jsx';
 import Movies from './components/pages/Movies.jsx';
 import TvSeries from './components/pages/TvSeries.jsx';
 import Genres from './components/pages/Genres.jsx';
+import Countries from './components/pages/Countries.jsx'
 
 register();
 const router = createBrowserRouter([
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: 'genres',
         element: <Genres />
+      },
+      {
+        path: 'countries',
+        element: <Countries />
       }
     ]
   }

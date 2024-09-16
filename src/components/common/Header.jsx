@@ -51,7 +51,7 @@ const Header = () => {
               <Link to="genres">Genre</Link>
             </li>
             <li className="nav-link">
-              <Link to="country">Country</Link>
+              <Link to="countries">Country</Link>
             </li>
           </ul>
         </nav>

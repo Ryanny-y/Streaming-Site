@@ -34,7 +34,7 @@ body {
   display:none;   
 }
 
-.genre-grid {
+.genre-grid, .country-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   row-gap: 15px;
