@@ -2,12 +2,15 @@ import { useParams } from "react-router-dom";
 import HeaderTitle from "../common/HeaderTitle";
 import MovieCard from "../ui/MovieCard";
 import { useEffect, useState } from "react";
+import useGetCountries from '../../utils/hooks/useGetCountries'
+import SeriesCard from '../ui/SeriesCard'
 
 const AllShows = () => {
+  const apiKey = import.meta.env.VITE_API_KEY;
   const [shows, setShows] = useState([]);
   const [title, setTitle] = useState("");
   const { filter = "", pageNumber } = useParams();
-  const apiKey = import.meta.env.VITE_API_KEY;
+  const { countries } = useGetCountries();
 
   const getGenreName = async (film, id) => {
     try {
@@ -37,12 +40,12 @@ const AllShows = () => {
     }
   };
 
-  const getMovies = async (film, id) => {
+  const getMovies = async (film, options) => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/discover/movie?page=${
+        `https://api.themoviedb.org/3/discover/${film}?page=${
           pageNumber.split("=")[1]
-        }&with_genres=${id}`,
+        }&${options}`,
         {
           method: "GET",
           headers: {
@@ -59,6 +62,7 @@ const AllShows = () => {
       }
 
       const data = await response.json();
+      console.log(data);
       setShows(data.results);
     } catch (error) {
       console.log(error.message);
@@ -70,15 +74,24 @@ const AllShows = () => {
       const id = Number(filter.split("=")[1]);
       if (filter.includes("movie")) {
         getGenreName("movie", id);
-        getMovies("movie", id);
+        getMovies("movie", `with_genres=${id}`);
       }
 
       if (filter.includes("tv")) {
         getGenreName("tv", id);
-        getMovies("tv", id);
+        getMovies("tv", `with_genres=${id}`);
       }
     }
-  }, [filter]);
+
+    if (filter.includes("country")) {
+      const countryParam = filter.split('=')[1];
+      if(countries.length) {
+        const country = countries.find(country => country.iso_3166_1 === countryParam);
+        setTitle(country.english_name);
+        getMovies('movie', `with_origin_country=${country.iso_3166_1}`)
+      }
+    }
+  }, [filter, countries, pageNumber]);
 
   return (
     <section id="all_shows">
@@ -87,10 +100,10 @@ const AllShows = () => {
 
         <div className="all_movie_container">
           {shows.length > 0 &&
-            (filter.includes("movie") ? (
+            ((filter.includes("movie") || (filter.includes('country'))) ? (
               shows.map((show) => <MovieCard key={show.id} movieId={show.id}/>)
             ) : filter.includes("tv") ? (
-              shows.map((show) => <MovieCard key={show.id} movieId={show.id}/>)
+              shows.map((show) => <SeriesCard key={show.id} seriesId={show.id}/>)
             ) : null)}
         </div>
       </div>

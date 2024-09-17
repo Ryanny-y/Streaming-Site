@@ -20,7 +20,7 @@ const MovieCard = ({ seriesId }) => {
     <>
       {Object.keys(details)?.length ? (
         <div
-          className="flex flex-col gap-3 pb-5 px-2 rounded-lg h-full"
+          className="flex flex-col gap-3 pb-5 px-2 relative rounded-lg h-full"
           style={{ background: "#333333" }}
         >
           <div className="image_poster w-full h-64">
