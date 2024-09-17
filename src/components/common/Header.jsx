@@ -6,7 +6,33 @@ import { useState } from "react";
 
 const Header = () => {
   const navigate = useNavigate();
+  const apiKey = import.meta.env.VITE_API_KEY
   const [ showNav, setShowNav ] = useState(false);
+  const [ searcHInput, setSearchInput ] = useState('');
+  const [ searchResults, setSearchResults ] = useState([]);
+
+  const handleSearch = async (e) => {
+    try {
+      const value = e.target.value;
+      setSearchInput(value);
+
+      const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${value}`, {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: `Bearer ${apiKey}`
+        }
+      });
+
+      if(!response.ok) {
+        throw new Error(response);
+      }
+      const data = await response.json();
+      setSearchResults(data.results)
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <header
@@ -33,7 +59,7 @@ const Header = () => {
               <Link to="genres">Genre</Link>
             </li>
             <li className="nav-link">
-              <Link to="countries">Country</Link>
+              <Link to="countries">Countries</Link>
             </li>
           </ul>
 
@@ -51,7 +77,7 @@ const Header = () => {
               <Link to="genres">Genre</Link>
             </li>
             <li className="nav-link">
-              <Link to="countries">Country</Link>
+              <Link to="countries">Countries</Link>
             </li>
           </ul>
         </nav>
@@ -63,9 +89,11 @@ const Header = () => {
         >
           <input
             type="text"
+            value={searcHInput}
+            onChange={(e) => handleSearch(e)}
             name="search"
             id="search"
-            className="bg-transparent outline-none text-sm w-40"
+            className="bg-transparent outline-none text-sm w-40 text-black"
             placeholder="Search Show."
           />
           <FontAwesomeIcon icon={faMagnifyingGlass} />
