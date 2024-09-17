@@ -24,14 +24,14 @@ const MovieCard = ({ movieId }) => {
     <>
       {Object.keys(details)?.length ? (
         <div
-          className="flex flex-col gap-3 pb-5 px-2 rounded-lg h-full"
+          className="flex flex-col gap-3 pb-5 px-2 relative rounded-lg h-full"
           style={{ background: "#333333" }}
         >
           <div className="image_poster w-full h-64">
             <img
               src={`https://image.tmdb.org/t/p/w500/${details?.poster_path}`}
               alt="Movie Poster"
-              className="absolute top-0 right-0 w-full h-64 rounded-lg"
+              className="absolute top-0 w-full right-0 h-64 rounded-lg"
             />
           </div>
 

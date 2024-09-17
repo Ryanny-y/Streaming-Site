@@ -39,3 +39,10 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   row-gap: 15px;
 }
+
+.all_movie_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  row-gap: 30px;
+  column-gap: 10px;
+}

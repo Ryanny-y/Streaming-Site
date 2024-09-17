@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import HeaderTitle from '../common/HeaderTitle'
 import useGetGenres from '../../utils/hooks/useGetGenres'
+import { Link } from "react-router-dom"
 
 const Genres = () => {
 
@@ -30,7 +31,7 @@ const Genres = () => {
           <div className="genre-grid mt-3 gap-2">
             {movieGenres.length > 0 && (
               movieGenres.map(genre => 
-                <button className="bg-charcoal py-3 rounded-md hover:bg-red-800 duration-300" key={genre.id}>{genre.name}</button>
+                <Link to={`/shows/movie-genre=${genre.id}/page=1`} className="bg-charcoal text-center py-3 rounded-md hover:bg-red-800 duration-300" key={genre.id}>{genre.name}</Link>
               )
             )}
           </div>
@@ -41,7 +42,7 @@ const Genres = () => {
           <div className="genre-grid mt-3 gap-2">
             {seriesGenres.length > 0 && (
               seriesGenres.map(genre => 
-                <button className="bg-charcoal py-3 rounded-md hover:bg-red-800 duration-300" key={genre.id}>{genre.name}</button>
+                <Link to={`/shows/tv-genre=${genre.id}/page=1`} className="bg-charcoal text-center py-3 rounded-md hover:bg-red-800 duration-300" key={genre.id}>{genre.name}</Link>
               )
             )}
           </div>

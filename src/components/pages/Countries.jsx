@@ -54,7 +54,7 @@ const Countries = () => {
             countries.map((country) => (
               <button
                 className="bg-charcoal py-3 rounded-md hover:bg-red-800 duration-300"
-                key={country.id}
+                key={country.iso_3166_1}
               >
                 {country.english_name}
               </button>

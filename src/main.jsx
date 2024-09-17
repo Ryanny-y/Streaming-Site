@@ -9,6 +9,7 @@ import TvSeries from './components/pages/TvSeries.jsx';
 import Genres from './components/pages/Genres.jsx';
 import Countries from './components/pages/Countries.jsx'
 import NotFound from './components/pages/NotFound.jsx';
+import AllShows from './components/pages/AllShows.jsx';
 
 register();
 const router = createBrowserRouter([
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: 'countries',
         element: <Countries />
+      },
+      {
+        path: 'shows/:filter/:pageNumber',
+        element: <AllShows />
       },
       {
         path: '*',
