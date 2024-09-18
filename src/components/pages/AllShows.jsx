@@ -130,7 +130,7 @@ const AllShows = () => {
             ) : null)}
         </div>
 
-        <div className="page_switch flex gap-3 items-center justify-center">
+        {shows.length > 0 && <div className="page_switch flex gap-3 items-center justify-center">
           <button className="prev_btn hover:text-red-500 duration-200" onClick={handlePrevPage}>
             <FontAwesomeIcon icon={faChevronLeft} />
           </button>
@@ -140,7 +140,7 @@ const AllShows = () => {
           <button className="next_btn hover:text-red-500 duration-200" onClick={handleNextPage}>
             <FontAwesomeIcon icon={faChevronRight} />
           </button>
-        </div>
+        </div>}
       </div>
     </section>
   );

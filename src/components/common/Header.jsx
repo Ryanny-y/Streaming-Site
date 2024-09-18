@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faBars, faX, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faBars, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { faBookmark, faHeart } from "@fortawesome/free-regular-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -93,23 +93,25 @@ const Header = () => {
             onChange={(e) => handleSearch(e)}
             name="search"
             id="search"
-            className="bg-transparent outline-none text-sm w-40 text-black"
+            className="bg-transparent outline-none text-sm min-w-40 w-full text-black"
             placeholder="Search Show."
           />
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
+          <FontAwesomeIcon icon={faMagnifyingGlass} className="text-black"/>
         </div>
 
         {/* WATCHLIST AND FAVORITES */}
         <div className="flex items-center gap-4 text-white text-xl">
-          <span className="relative group">
-            <FontAwesomeIcon icon={faBookmark} className="text-yellow-500" />
-            <p className="text-xs absolute top-8 group-hover:opacity-100 left-0 opacity-0 duration-200 transition-all">
+          <span className="relative group flex">
+            <FontAwesomeIcon icon={faBookmark} className="text-yellow-500 group-hover:hidden" />
+            <i class="fas fa-bookmark hidden group-hover:block text-yellow-500"></i>
+            <p className="text-xs absolute top-8 group-hover:opacity-100 left-0 opacity-0 transition-all">
               Add To Watchlist
             </p>
           </span>
-          <span className="relative group">
-            <FontAwesomeIcon icon={faHeart} className="text-red-600" />
-            <p className="text-xs absolute top-8 group-hover:opacity-100 left-0 opacity-0 duration-200 transition-all">
+          <span className="relative group flex">
+            <FontAwesomeIcon icon={faHeart} className="text-red-600 group-hover:hidden" />
+            <i class="fas fa-heart hidden group-hover:block text-red-600"></i>
+            <p className="text-xs absolute top-8 group-hover:opacity-100 left-0 opacity-0 transition-all">
               Add To Favorites
             </p>
           </span>
