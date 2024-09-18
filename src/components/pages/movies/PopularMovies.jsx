@@ -24,14 +24,14 @@ const PopularMovies = () => {
 
           <SliderLayout section="popular_movies" slidesPerViewArr={[2, 3, 5]}>
             {movies.map(movie => 
-              <swiper-slide kay={movie.id} style={{ height: 'auto' }}>
+              <swiper-slide key={movie.id} style={{ height: 'auto' }}>
                 <MovieCard movieId={movie.id}/>
               </swiper-slide>
             )}
           </SliderLayout>
         </section>
       ) : (
-        <p></p>
+        <p>Loading</p>
       )}
     </>
   );

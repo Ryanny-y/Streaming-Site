@@ -1,16 +1,20 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import HeaderTitle from "../common/HeaderTitle";
 import MovieCard from "../ui/MovieCard";
 import { useEffect, useState } from "react";
 import useGetCountries from '../../utils/hooks/useGetCountries'
 import SeriesCard from '../ui/SeriesCard'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 const AllShows = () => {
   const apiKey = import.meta.env.VITE_API_KEY;
   const [shows, setShows] = useState([]);
   const [title, setTitle] = useState("");
   const { filter = "", pageNumber } = useParams();
+  const pageNumberInt = parseInt(pageNumber.split('=')[1]);
   const { countries } = useGetCountries();
+  const navigate = useNavigate();
 
   const getGenreName = async (film, id) => {
     try {
@@ -62,7 +66,6 @@ const AllShows = () => {
       }
 
       const data = await response.json();
-      console.log(data);
       setShows(data.results);
     } catch (error) {
       console.log(error.message);
@@ -93,6 +96,26 @@ const AllShows = () => {
     }
   }, [filter, countries, pageNumber]);
 
+  const handlePrevPage = () => {
+    const newPage = pageNumberInt - 1;
+    console.log(newPage);
+    if(newPage < 1) {
+      return;
+    }
+    if(filter.includes('movie')) {
+      const genre = filter.split('=')[1];
+      navigate(`/shows/movie-genre=${genre}/page=${newPage}`)
+    }
+  }
+
+  const handleNextPage = () => {
+    const newPage = pageNumberInt + 1;
+    if(filter.includes('movie')) {
+      const genre = filter.split('=')[1]
+      navigate(`/shows/movie-genre=${genre}/page=${newPage}`)
+    }
+  }
+
   return (
     <section id="all_shows">
       <div className="container flex flex-col gap-10 text-white">
@@ -105,6 +128,18 @@ const AllShows = () => {
             ) : filter.includes("tv") ? (
               shows.map((show) => <SeriesCard key={show.id} seriesId={show.id}/>)
             ) : null)}
+        </div>
+
+        <div className="page_switch flex gap-3 items-center justify-center">
+          <button className="prev_btn hover:text-red-500 duration-200" onClick={handlePrevPage}>
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </button>
+          <p id="page_number" className="text-xl text-red-500">
+              {pageNumberInt}
+          </p>
+          <button className="next_btn hover:text-red-500 duration-200" onClick={handleNextPage}>
+            <FontAwesomeIcon icon={faChevronRight} />
+          </button>
         </div>
       </div>
     </section>
