@@ -10,6 +10,7 @@ import Genres from './components/pages/Genres.jsx';
 import Countries from './components/pages/Countries.jsx'
 import NotFound from './components/pages/NotFound.jsx';
 import AllShows from './components/pages/AllShows.jsx';
+import WatchShow from './components/pages/WatchShow.jsx';
 
 register();
 const router = createBrowserRouter([
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: 'shows/:filter/:pageNumber',
         element: <AllShows />
+      },
+      {
+        path: 'watch/:video/:show',
+        element: <WatchShow />
       },
       {
         path: '*',

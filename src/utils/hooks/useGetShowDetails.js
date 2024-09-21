@@ -49,7 +49,7 @@ const useGetShowDetails = (film, id) => {
     return () => {
       controller.abort();
     };
-  }, [id]);
+  }, [film, id]);
 
   return { showDetails, error, isLoading };
 };
