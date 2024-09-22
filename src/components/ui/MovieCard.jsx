@@ -6,6 +6,7 @@ import WatchTrailerBtn from "./buttons/WatchTrailerBtn";
 import useGetShowDetails from "../../utils/hooks/useGetShowDetails";
 import { useEffect, useState } from "react";
 import { formatRatings, formatDuration } from "../../utils/formatter";
+import { Link } from "react-router-dom";
 
 const MovieCard = ({ movieId }) => {
   const [details, setDetails] = useState({});
@@ -27,13 +28,13 @@ const MovieCard = ({ movieId }) => {
           className="flex flex-col gap-3 pb-5 px-2 relative rounded-lg h-full"
           style={{ background: "#333333" }}
         >
-          <div className="image_poster w-full h-64">
+          <Link to={`/watch/movie/movie-id=${movieId}`} className="image_poster w-full h-64">
             <img
               src={`https://image.tmdb.org/t/p/w500/${details?.poster_path}`}
               alt="Movie Poster"
               className="absolute top-0 w-full right-0 h-64 rounded-lg"
             />
-          </div>
+          </Link>
 
           <WatchBtn />
           <WatchTrailerBtn />

@@ -4,6 +4,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import useGetShowDetails from "../../utils/hooks/useGetShowDetails";
 import { useEffect, useState } from "react";
 import { formatRatings, formatDuration } from "../../utils/formatter";
+import { Link } from "react-router-dom";
 
 const MovieCardNoBg = ({ movieId }) => {
   const [details, setDetails] = useState({});
@@ -19,13 +20,13 @@ const MovieCardNoBg = ({ movieId }) => {
     <>
       {Object.keys(details)?.length ? (
         <div className="flex flex-col gap-3">
-          <div id="image_poster">
+          <Link to={`/watch/movie/movie-id=${movieId}`} id="image_poster">
             <img
               src={`https://image.tmdb.org/t/p/w500/${details?.poster_path}`}
               alt="Image Poster"
               className="h-80 w-full"
             />
-          </div>
+          </Link>
 
           <h1 id="title" className="text-xl font-semibold tracking-wide">
             {details.original_title}

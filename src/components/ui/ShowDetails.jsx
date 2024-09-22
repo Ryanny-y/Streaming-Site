@@ -5,7 +5,7 @@ import { faClock } from "@fortawesome/free-regular-svg-icons";
 import dayjs from "dayjs";
 import { formatDuration, formatRatings } from "../../utils/formatter";
 
-const MovieDetails = ({ details, filmType }) => {
+const ShowDetails = ({ details, filmType }) => {
   return (
     <div id="show_details" className="flex gap-5">
       <div id="show_poster" className="basis-72 shrink-0">
@@ -19,7 +19,7 @@ const MovieDetails = ({ details, filmType }) => {
       <div className="flex flex-col gap-5 basis-2/5 grow">
         {/* SHOW TITLE */}
         <h1 className="text-3xl tracking-wide font-semibold">
-          {details.original_title}
+          {filmType === 'movie' ? `${details.original_title}` : `${details.name}`}
         </h1>
 
         {/* GENRE AND TIME */}
@@ -101,4 +101,4 @@ const MovieDetails = ({ details, filmType }) => {
   );
 };
 
-export default MovieDetails;
+export default ShowDetails;

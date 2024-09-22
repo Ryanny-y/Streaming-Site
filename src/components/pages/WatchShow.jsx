@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useGetShowDetails from "../../utils/hooks/useGetShowDetails";
-import MovieDetails from "../ui/MovieDetails";
+import ShowDetails from "../ui/ShowDetails";
 import Recommendation from "../ui/Recommendation";
 import ShowVideo from "../ui/ShowVideo";
 
@@ -37,7 +37,7 @@ const WatchShow = () => {
               <ShowVideo video={video} show={show} showId={showId}/>
             </section>
 
-            <MovieDetails filmType={filmType} details={details} />
+            <ShowDetails filmType={filmType} details={details} />
 
             <Recommendation filmType={filmType} showId={showId} />
           </>

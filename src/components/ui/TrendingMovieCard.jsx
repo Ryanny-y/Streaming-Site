@@ -5,6 +5,7 @@ import GenreCard from "./GenreCard";
 import { useEffect, useState } from "react";
 import useGetShowDetails from "../../utils/hooks/useGetShowDetails";
 import { formatRatings, formatDuration } from "../../utils/formatter";
+import { Link } from "react-router-dom";
 
 const TrendingMovieCard = ({ movieId }) => {
   const [details, setDetails] = useState({});
@@ -20,7 +21,7 @@ const TrendingMovieCard = ({ movieId }) => {
     <>
       {Object.keys(details)?.length ? (
         <div className="flex flex-col gap-3">
-          <div id="movie_poster" className="relative">
+          <Link to={`/watch/movie/movie-id=${movieId}`} id="movie_poster" className="relative">
             <img
               src={`https://image.tmdb.org/t/p/w500/${details?.poster_path}`}
               alt="Movie Poster"
@@ -40,7 +41,7 @@ const TrendingMovieCard = ({ movieId }) => {
                 {formatRatings(details.vote_average)}
               </span>
             </h1>
-          </div>
+          </Link>
 
           <h1 id="title" className="font-semibold tracking-wide text-xl">
             {details.original_title}

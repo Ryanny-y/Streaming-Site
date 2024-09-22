@@ -3,6 +3,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import useGetShowDetails from "../../utils/hooks/useGetShowDetails";
 import { formatRatings } from "../../utils/formatter";
+import { Link } from "react-router-dom";
 
 const SeriesCardNoBg = ({ seriesId }) => {
   const [details, setDetails] = useState({});
@@ -18,13 +19,13 @@ const SeriesCardNoBg = ({ seriesId }) => {
     <>
       {Object.keys(details)?.length ? (
         <div className="flex flex-col gap-3">
-          <div id="image_poster">
+          <Link to={`/watch/tv/tv-id=${seriesId}?s=1&e=1`} id="image_poster">
             <img
               src={`https://image.tmdb.org/t/p/w500/${details?.poster_path}`}
               alt="Image Poster"
               className="h-80 w-full"
             />
-          </div>
+          </Link>
 
           <h1 id="title" className="text-xl font-semibold tracking-wide">
             {details.name}

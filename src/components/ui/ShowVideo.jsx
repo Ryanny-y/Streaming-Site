@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const ShowVideo = ({ video, show, showId }) => {
   const apiKey = import.meta.env.VITE_API_KEY;
@@ -6,9 +7,14 @@ const ShowVideo = ({ video, show, showId }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const location = useLocation();
+  const qParams = new URLSearchParams(location.search);
+  const season = qParams.get("s");
+  const episode = qParams.get("e");
+
   useEffect(() => {
-    if (video === 'trailer' && show.includes('movie')) {
-      getTrailer('movie');
+    if (video === "trailer" && show.includes("movie")) {
+      getTrailer("movie");
     }
   }, [video, showId]); // Added showId to the dependency array
 
@@ -34,7 +40,7 @@ const ShowVideo = ({ video, show, showId }) => {
       }
 
       const data = await response.json();
-      const trailer = data.results.find(result => result.type === 'Trailer');
+      const trailer = data.results.find((result) => result.type === "Trailer");
       setVideoKey(trailer ? trailer.key : null);
     } catch (error) {
       setError(error.message);
@@ -54,12 +60,27 @@ const ShowVideo = ({ video, show, showId }) => {
           height="100%"
           title="YouTube video player"
           src={`https://www.youtube.com/embed/${videoKey}`}
-          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      ) : video == "movie" ? (
+        <iframe
+          width="100%"
+          height="100%"
+          title="YouTube video player"
+          src={`https://vidsrc.xyz/embed/${video}/${showId}`}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />
       ) : (
-        <p>Movie</p>
+        <iframe
+          width="100%"
+          height="100%"
+          title="YouTube video player"
+          src={`https://vidsrc.xyz/embed/tv/${showId}/${season}-${episode}`}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
       )}
     </>
   );

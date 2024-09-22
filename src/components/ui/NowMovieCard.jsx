@@ -1,8 +1,9 @@
 import { formatDate } from '../../utils/formatter'
+import { Link } from 'react-router-dom';
 
 const NowMovieCard = ({ movieDetails }) => {
   return (
-    <div className="flex items-center gap-4">
+    <Link to={`/watch/movie/movie-id=${movieDetails.id}`} className="flex items-center gap-4">
       <div id="movie_poster">
         <img
           src={`https://image.tmdb.org/t/p/w500/${movieDetails?.poster_path}`}
@@ -16,7 +17,7 @@ const NowMovieCard = ({ movieDetails }) => {
         <p id="production">Movie</p>
         <p>{formatDate(movieDetails.release_date)}</p>
       </div>
-    </div>
+    </Link>
   );
 };
 
