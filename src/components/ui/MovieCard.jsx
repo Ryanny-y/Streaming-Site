@@ -36,8 +36,8 @@ const MovieCard = ({ movieId }) => {
             />
           </Link>
 
-          <WatchBtn />
-          <WatchTrailerBtn />
+          <WatchBtn movieId={movieId}/>
+          <WatchTrailerBtn movieId={movieId}/>
 
           <h1 id="title" className="tracking-wide font-medium">
             {details.original_title}

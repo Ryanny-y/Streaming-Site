@@ -8,81 +8,71 @@ const ShowVideo = ({ video, show, showId }) => {
   const [error, setError] = useState(null);
 
   const location = useLocation();
-  const qParams = new URLSearchParams(location.search);
-  const season = qParams.get("s");
-  const episode = qParams.get("e");
+  const queryParams = new URLSearchParams(location.search);
+  const season = queryParams.get("s");
+  const episode = queryParams.get("e");
 
   useEffect(() => {
-    if (video === "trailer" && show.includes("movie")) {
-      getTrailer("movie");
-    }
-  }, [video, showId]); // Added showId to the dependency array
+    const fetchTrailer = async () => {
+      if (video !== "trailer" || !show.includes("movie")) return;
 
-  const getTrailer = async (filmType) => {
-    setLoading(true);
-    setError(null); // Reset error state before fetching
-    try {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/${filmType}/${showId}/videos`,
-        {
-          method: "GET",
-          headers: {
-            accept: "application/json",
-            Authorization: `Bearer ${apiKey}`,
-          },
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${showId}/videos`,
+          {
+            headers: {
+              accept: "application/json",
+              Authorization: `Bearer ${apiKey}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          const { status_message } = await response.json();
+          throw new Error(status_message || response.statusText);
         }
-      );
 
-      if (!response.ok) {
-        const errData = await response.json();
-        const errMsg = errData.message || errData.statusText;
-        throw new Error(errMsg);
+        const data = await response.json();
+        const trailer = data.results.find((item) => item.type === "Trailer");
+        setVideoKey(trailer?.key || null);
+      } catch (err) {
+        setError(err.message);
+        console.error("Fetching trailer failed:", err);
+      } finally {
+        setLoading(false);
       }
+    };
 
-      const data = await response.json();
-      const trailer = data.results.find((result) => result.type === "Trailer");
-      setVideoKey(trailer ? trailer.key : null);
-    } catch (error) {
-      setError(error.message);
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    fetchTrailer();
+  }, [video, show, showId, apiKey]);
 
-  return (
-    <>
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
-      {video === "trailer" && videoKey ? (
-        <iframe
-          width="100%"
-          height="100%"
-          title="YouTube video player"
-          src={`https://www.youtube.com/embed/${videoKey}`}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
-      ) : video == "movie" ? (
-        <iframe
-          width="100%"
-          height="100%"
-          title="YouTube video player"
-          src={`https://vidsrc.xyz/embed/${video}/${showId}`}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
-      ) : (
-        <iframe
-          width="100%"
-          height="100%"
-          title="YouTube video player"
-          src={`https://vidsrc.xyz/embed/tv/${showId}/${season}-${episode}`}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
-      )}
-    </>
+  const renderIframe = (src) => (
+    <iframe
+      width="100%"
+      height="100%"
+      title="Video player"
+      src={src}
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    />
+  );
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
+  if (video === "trailer" && videoKey) {
+    return renderIframe(`https://www.youtube.com/embed/${videoKey}`);
+  }
+
+  if (video === "movie") {
+    return renderIframe(`https://vidsrc.xyz/embed/${video}/${showId}`);
+  }
+
+  return renderIframe(
+    `https://vidsrc.xyz/embed/tv/${showId}/${season}-${episode}`
   );
 };
 
