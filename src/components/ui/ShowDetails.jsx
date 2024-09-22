@@ -7,13 +7,13 @@ import { formatDuration, formatRatings } from "../../utils/formatter";
 
 const ShowDetails = ({ details, filmType }) => {
   return (
-    <div id="show_details" className="flex gap-5">
+    <div id="show_details" className="flex flex-col sm:flex-row gap-5">
 
       <div id="show_poster" className="basis-72 shrink-0">
         <img
           src={`https://image.tmdb.org/t/p/w500/${details.poster_path}`}
           alt="Show Poster"
-          className="bg-blue-200 w-full h-80"
+          className="mx-auto max-w-80 w-full h-72 sm:h-80"
         />
       </div>
 
@@ -28,7 +28,7 @@ const ShowDetails = ({ details, filmType }) => {
         {/* GENRE AND TIME */}
         <div
           id="genres_time"
-          className="flex flex-col md:flex-row gap-4 items-center"
+          className="flex flex-col sm:flex-row gap-4 sm:items-center"
         >
           <div
             id="genres"
@@ -41,7 +41,7 @@ const ShowDetails = ({ details, filmType }) => {
 
           <div
             id="date_time_ratings"
-            className="flex items-center gap-2 flex-wrap"
+            className="flex gap-2 flex-wrap"
           >
             <p className="flex items-center gap-1">
               <FontAwesomeIcon icon={faCalendarDays} />
@@ -66,10 +66,10 @@ const ShowDetails = ({ details, filmType }) => {
         </div>
 
         {/* SHOW PLOT */}
-        <p id="plot">{details.overview}</p>
+        <p id="plot" className="">{details.overview}</p>
 
         {/* OTHER DETAILS */}
-        <div id="other_details" className="pl-3 flex flex-col gap-1 text-sm">
+        <div id="other_details" className="hidden pl-3 sm:flex flex-col gap-1 text-sm">
           <p className="flex items-start gap-1">
             Country:
             <span>
