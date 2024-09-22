@@ -19,7 +19,6 @@ const MovieCardNoBg = ({ movieId }) => {
     <>
       {Object.keys(details)?.length ? (
         <div className="flex flex-col gap-3">
-          {console.log(details)}
           <div id="image_poster">
             <img
               src={`https://image.tmdb.org/t/p/w500/${details?.poster_path}`}

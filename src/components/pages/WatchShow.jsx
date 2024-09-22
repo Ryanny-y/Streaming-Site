@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import useGetShowDetails from "../../utils/hooks/useGetShowDetails";
 import MovieDetails from "../ui/MovieDetails";
 import Recommendation from "../ui/Recommendation";
+import ShowVideo from "../ui/ShowVideo";
 
 const WatchShow = () => {
   const { video, show = "" } = useParams();
@@ -33,20 +34,7 @@ const WatchShow = () => {
               className="w-full"
               style={{ height: "500px" }}
             >
-              {video === 'trailer' ? (
-                <iframe
-                width="100%"
-                height="100%"
-                src="https://www.youtube.com/embed/957452"
-                title="YouTube video player"
-                frameborder="0"
-                autoPlay="1"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-              </iframe>
-              ) : (
-                <p>Movie</p>
-              )}
+              <ShowVideo video={video} show={show} showId={showId}/>
             </section>
 
             <MovieDetails filmType={filmType} details={details} />
