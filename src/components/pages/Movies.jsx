@@ -2,7 +2,7 @@ import HeaderTitle from "../common/HeaderTitle"
 import NowPlayingMovies from "./movies/NowPlayingMovies"
 import PopularMovies from "./movies/PopularMovies"
 import TopRatedMovies from './movies/TopRatedMovies'
-import UpcomingMovies from "./movies/UpComingMovies"
+import UpcomingMovies from "./movies/UpcomingMovies"
 
 const Movies = () => {
   return (
