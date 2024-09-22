@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { formatDuration } from "../../../utils/formatter";
+import { Link } from "react-router-dom";
 
 const SearchBar = () => {
   const apiKey = import.meta.env.VITE_API_KEY;
@@ -34,6 +35,12 @@ const SearchBar = () => {
       console.log(error);
     }
   };
+  
+  const onSearchEnter = (e) => {
+    if(e.key === 'Enter') {
+      window.location.href = `/shows/search=${e.target.value}/page=1`
+    }
+  }
 
   useEffect(() => {
     if (searchResults.length) {
@@ -78,6 +85,7 @@ const SearchBar = () => {
         type="text"
         value={searcHInput}
         onChange={(e) => handleSearch(e)}
+        onKeyDown={(e) => onSearchEnter(e)}
         name="search"
         id="search"
         className="bg-transparent outline-none text-sm min-w-40 w-full"
@@ -88,7 +96,8 @@ const SearchBar = () => {
       {searchResults.length > 0 && (
         <div className="search_results absolute top-10 flex flex-col gap-1 left-0 right-0">
           {resultDetails.map((result) => (
-            <div
+            <Link
+              to={`/watch/movie/movie-id=${result.id }`}
               key={result.id}
               className="result flex items-start gap-2 bg-white px-3 py-2"
             >
@@ -102,7 +111,7 @@ const SearchBar = () => {
                 <p>{result.original_title}</p>
                 <p>{formatDuration(result.runtime)}</p>
               </span>
-            </div>
+            </Link>
           ))}
         </div>
       )}

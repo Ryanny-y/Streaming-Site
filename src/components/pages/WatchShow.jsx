@@ -38,7 +38,7 @@ const WatchShow = () => {
               className="w-full flex flex-col gap-10"
               style={{ height: "600px" }}
             >
-              {/* <ShowVideo video={video} show={show} showId={showId} /> */}
+              <ShowVideo video={video} show={show} showId={showId} />
 
               {(video === "movie" || video == 'trailer') && (
                 <div id="action_btns" className="flex gap-5 items-center w-full">
