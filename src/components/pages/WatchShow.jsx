@@ -6,6 +6,7 @@ import useGetShowDetails from "../../utils/hooks/useGetShowDetails";
 import ShowDetails from "../ui/ShowDetails";
 import Recommendation from "../ui/Recommendation";
 import ShowVideo from "../ui/ShowVideo";
+import Reviews from "../ui/Reviews";
 
 const WatchShow = () => {
   const { video, show = "" } = useParams();
@@ -31,12 +32,13 @@ const WatchShow = () => {
       <div className="container flex flex-col gap-16 text-white">
         {Object.keys(details).length > 0 && !isLoading && !error && (
           <>
+            {/* Video Container */}
             <section
               id="video_container"
               className="w-full flex flex-col gap-10"
               style={{ height: "600px" }}
             >
-              <ShowVideo video={video} show={show} showId={showId} />
+              {/* <ShowVideo video={video} show={show} showId={showId} /> */}
 
               {(video === "movie" || video == 'trailer') && (
                 <div id="action_btns" className="flex gap-5 items-center w-full">
@@ -49,9 +51,14 @@ const WatchShow = () => {
               )}
             </section>
 
+            {/* Show Details */}
             <ShowDetails filmType={filmType} details={details} />
 
+            {/* Recommendations */}
             <Recommendation filmType={filmType} showId={showId} />
+
+            {/* Reviews */}
+            <Reviews filmType={filmType} showId={showId}/>
           </>
         )}
       </div>
