@@ -1,11 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark, faHeart } from "@fortawesome/free-regular-svg-icons";
-import { useNavigate } from "react-router-dom";
-import HeaderNav from "../ui/header/headerNav";
+import HeaderNav from "../ui/header/HeaderNav";
 import SearchBar from "../ui/header/SearchBar";
  
 const Header = () => {
-  const navigate = useNavigate();
 
   return (
     <header id="header" className="sticky top-0 py-5 z-40 bg-black">
