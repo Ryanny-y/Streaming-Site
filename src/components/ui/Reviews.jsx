@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import HeaderTitle from "../common/HeaderTitle";
 import dayjs from "dayjs";
 import { formatRatings } from "../../utils/formatter";
@@ -8,10 +8,10 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 const Reviews = ({ filmType, showId }) => {
   const apiKey = import.meta.env.VITE_API_KEY;
   const [reviews, setReviews] = useState([]);
-  const [limitedReviews, setLimitedReviews] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [fullReview, setFullReview] = useState(false);
+  const [fullReview, setFullReview] = useState({});
+  const [ showAllReview, setShowAllReview ] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -55,15 +55,16 @@ const Reviews = ({ filmType, showId }) => {
     };
   }, [filmType, showId]);
 
-  useEffect(() => {
-    if (reviews.length > 0 && !isLoading && !error) {
-      if (reviews.length > 3) {
-        setLimitedReviews(reviews.slice(0, 3));
-      } else {
-        setLimitedReviews(reviews);
-      }
-    }
-  }, [reviews, isLoading, error]);
+  const handleToggleFullReview = (id) => {
+    setFullReview((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
+  const limitedReviews = useMemo(() => {
+    return showAllReview ? reviews : reviews.slice(0, 3);
+  }, [reviews, showAllReview]);
 
   return (
     <div className="flex flex-col gap-5">
@@ -89,13 +90,13 @@ const Reviews = ({ filmType, showId }) => {
                   {dayjs(review.updated_at).format("MM/DD/YYYY")}
                 </p>
                 <p id="review" className="cursor-pointer">
-                  {fullReview ? (
-                    <span onClick={() => setFullReview(false)}>
+                  {fullReview[review.id] ? (
+                    <span onClick={() => handleToggleFullReview(review.id)}>
                       {review.content}
                     </span>
                   ) : (
                     <>
-                      <span onClick={() => setFullReview(true)}> 
+                      <span onClick={() => handleToggleFullReview(review.id)}>
                         {review.content.slice(0, 150)}
                         <span className="text-red-500"> See More...</span>
                       </span>
@@ -111,22 +112,23 @@ const Reviews = ({ filmType, showId }) => {
             </div>
           ))}
 
-        {limitedReviews.length <= 3 && (
+        {limitedReviews.length > 0 &&
+          limitedReviews.length < reviews.length && (
+            <button
+              onClick={() => setShowAllReview(true)}
+              className="bg-red-700 self-center px-10 py-2 rounded-lg text-nowrap hover:bg-light-red duration-200"
+            >
+              View All
+            </button>
+          )}
+
+        {limitedReviews.length === reviews.length && (
           <button
-            onClick={() => setLimitedReviews(reviews)}
+            onClick={() => setShowAllReview(false)}
             className="bg-red-700 self-center px-10 py-2 rounded-lg text-nowrap hover:bg-light-red duration-200"
           >
-            View All
+            View Less
           </button>
-        )}
-
-        {limitedReviews.length > 3 && (
-          <button
-          onClick={() => setLimitedReviews(reviews.slice(0, 3))}
-          className="bg-red-700 self-center px-10 py-2 rounded-lg text-nowrap hover:bg-light-red duration-200"
-        >
-          View Less
-        </button>
         )}
       </div>
     </div>
