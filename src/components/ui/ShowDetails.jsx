@@ -8,6 +8,7 @@ import { formatDuration, formatRatings } from "../../utils/formatter";
 const ShowDetails = ({ details, filmType }) => {
   return (
     <div id="show_details" className="flex gap-5">
+
       <div id="show_poster" className="basis-72 shrink-0">
         <img
           src={`https://image.tmdb.org/t/p/w500/${details.poster_path}`}
@@ -19,7 +20,9 @@ const ShowDetails = ({ details, filmType }) => {
       <div className="flex flex-col gap-5 basis-2/5 grow">
         {/* SHOW TITLE */}
         <h1 className="text-3xl tracking-wide font-semibold">
-          {filmType === 'movie' ? `${details.original_title}` : `${details.name}`}
+          {filmType === "movie"
+            ? `${details.original_title}`
+            : `${details.name}`}
         </h1>
 
         {/* GENRE AND TIME */}
@@ -50,7 +53,8 @@ const ShowDetails = ({ details, filmType }) => {
                 <span>{formatDuration(details.runtime)}</span>
               ) : (
                 <span>
-                  Series/S {details.number_of_seasons}/EP {details.number_of_episodes}
+                  Series/S {details.number_of_seasons}/EP{" "}
+                  {details.number_of_episodes}
                 </span>
               )}
             </p>

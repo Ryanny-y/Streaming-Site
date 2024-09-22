@@ -32,7 +32,7 @@ const MovieCard = ({ seriesId }) => {
             />
           </Link>
 
-          <WatchBtn />
+          <WatchBtn filmType='tv' showId={details.id} options="?s=1&e=1"/>
           <WatchTrailerBtn />
 
           <h1 id="title" className="tracking-wide font-medium">

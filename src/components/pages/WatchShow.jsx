@@ -1,5 +1,7 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import useGetShowDetails from "../../utils/hooks/useGetShowDetails";
 import ShowDetails from "../ui/ShowDetails";
 import Recommendation from "../ui/Recommendation";
@@ -31,10 +33,20 @@ const WatchShow = () => {
           <>
             <section
               id="video_container"
-              className="w-full"
-              style={{ height: "500px" }}
+              className="w-full flex flex-col gap-10"
+              style={{ height: "600px" }}
             >
-              <ShowVideo video={video} show={show} showId={showId}/>
+              <ShowVideo video={video} show={show} showId={showId} />
+
+              {(video === "movie" || video == 'trailer') && (
+                <div id="action_btns" className="flex gap-5 items-center w-full">
+                  <Link to={`/watch/movie/movie-id=${showId}`} className="flex-1 flex items-center gap-2 bg-red-600 w-full justify-center py-3 font-semibold text-sm rounded-lg tracking-wide hover:bg-light-red duration-300">
+                    <FontAwesomeIcon icon={faPlay} />
+                    Watch Now
+                  </Link>
+                  <Link to={`/watch/trailer/movie-id=${showId}`} className="flex-1 flex items-center gap-2 bg-yellow-600 w-full justify-center py-3 font-semibold text-sm rounded-lg tracking-wide hover:bg-yellow-500 duration-300">Watch Trailer</Link>
+                </div>
+              )}
             </section>
 
             <ShowDetails filmType={filmType} details={details} />
