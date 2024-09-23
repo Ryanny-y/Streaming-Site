@@ -33,7 +33,7 @@ const SeriesCardNoBg = ({ seriesId }) => {
 
           <div id="rating_duration" className="flex items-center gap-4 text-sm">
             <p>
-              <FontAwesomeIcon icon={faStar} className="text-yellow-500" />
+              <FontAwesomeIcon icon={faStar} className="text-yellow-300" />
               <span className="ml-1">
                 {formatRatings(details.vote_average)}
               </span>

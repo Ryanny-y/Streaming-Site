@@ -7,7 +7,7 @@ import DiscoverMovie from "./landing/DiscoverMovie"
 
 const Landing = () => {
   return (
-    <main className="container flex flex-col gap-16 text-white font-Poppins">
+    <main className="flex flex-col gap-16 text-white font-Poppins">
       <Hero />
       <NowPlaying />
       <Trending />

@@ -20,7 +20,7 @@ const NowPlaying = () => {
     <>
       {movies.length > 0 ? (
         <section id="now_playing">
-          <div className="flex flex-col gap-10">
+          <div className="container flex flex-col gap-10">
             <SectionTitle title="Now Playing Movies" section="now_playing" />
 
             <SliderLayout section="now_playing" slidesPerViewArr={[2, 2, 4]}>

@@ -19,7 +19,7 @@ const PopularMovie = () => {
 
   return (
     <section id="popular">
-      <div className="flex flex-col gap-10">
+      <div className="container flex flex-col gap-10">
         <SectionTitle title="Popular Movies" section="popular_movies" />
 
         <SliderLayout section="popular_movies" slidesPerViewArr={[2, 3, 4]}>

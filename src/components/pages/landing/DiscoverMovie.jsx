@@ -37,7 +37,7 @@ const DiscoverMovie = () => {
     <>
       {movies.length > 0 && (
         <section id="discover_movies">
-          <div className="flex flex-col gap-10">
+          <div className="container flex flex-col gap-10">
             <SectionTitle title="Discover Movies" section="discover_movies" />
 
             <div className="slider-wrapper h-full">

@@ -20,7 +20,7 @@ const Trending = () => {
     <>
       {movies.length > 0 && (
         <section id="trending">
-          <div className="flex flex-col gap-10">
+          <div className="container flex flex-col gap-10">
             <SectionTitle title="Trending" section="trending" />
 
             <SliderLayout section="trending" slidesPerViewArr={[1, 2, 3]}>

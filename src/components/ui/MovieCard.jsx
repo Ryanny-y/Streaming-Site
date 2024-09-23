@@ -48,7 +48,7 @@ const MovieCard = ({ movieId }) => {
             className="flex items-center justify-between text-sm"
           >
             <p className="flex items-center gap-1">
-              <FontAwesomeIcon icon={faStar} className="text-yellow-500" />
+              <FontAwesomeIcon icon={faStar} className="text-yellow-300" />
               <span>{formatRatings(details.vote_average)}</span>
             </p>
             <p className="flex items-center gap-1">
