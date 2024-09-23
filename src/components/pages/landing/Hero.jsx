@@ -3,7 +3,7 @@ import useGetShows from "../../../utils/hooks/useGetShows";
 import dayjs from "dayjs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays, faClock } from "@fortawesome/free-regular-svg-icons";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faPlay, faStar } from "@fortawesome/free-solid-svg-icons";
 import { formatRatings, formatDuration } from "../../../utils/formatter";
 import { Link } from "react-router-dom";
 
@@ -80,7 +80,7 @@ const Hero = () => {
                 <div
                   id="movie-container"
                   className="container relative bg-black h-full flex flex-col gap-3 justify-end pb-10"
-                >
+                > 
                   <Link
                     to={`/watch/movie/movie-id=${movie?.id}`}
                     className="absolute top-0 bottom-0 w-full left-1/2 -translate-x-1/2 brightness-75 flex justify-center items-center"
@@ -91,6 +91,16 @@ const Hero = () => {
                       className="h-full w-full object-contain max-w-full max-h-full"
                     />
                   </Link>
+
+                  <div id="action_btns" className="flex items-center gap-4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <Link to={`watch/movie/movie-id=${movie.id}`} className="flex items-center gap-2 bg-red-600 hover:bg-light-red duration-200 px-5 py-3 rounded-md font-semibold">
+                      <FontAwesomeIcon icon={faPlay}/>
+                      <span>
+                        Watch Now
+                      </span>
+                    </Link>
+                    <Link className="bg-yellow-600 hover:bg-yellow-500 duration-200 px-5 py-3 rounded-md font-semibold">Watch Trailer</Link>
+                  </div>
 
                   <h1 id="title" className="font-bold text-3xl z-10">
                     {movie?.original_title}

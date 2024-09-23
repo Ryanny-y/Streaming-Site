@@ -2,7 +2,13 @@ import dayjs from 'dayjs'
 
 export const formatDate = (date) => dayjs(date).format('MM/DD/YYYY');
 
-export const formatRatings = (rating) => rating.toFixed(1);
+export const formatRatings = (rating) => {
+  if (rating == null) {
+    return "N/A";
+  }
+  return rating.toFixed(1);
+};
+
 
 export const formatDuration = (duration) => {
   let hours = Math.floor(duration / 60);

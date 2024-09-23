@@ -106,7 +106,7 @@ const Reviews = ({ filmType, showId }) => {
 
                 <p id="rating" className="flex items-center gap-1">
                   <FontAwesomeIcon icon={faStar} className="text-yellow-400" />
-                  {formatRatings(review.author_details.rating)}
+                  {formatRatings(review?.author_details?.rating)}
                 </p>
               </div>
             </div>
