@@ -99,7 +99,7 @@ const Hero = () => {
                         Watch Now
                       </span>
                     </Link>
-                    <Link className="bg-yellow-600 hover:bg-yellow-500 duration-200 px-5 py-3 rounded-md font-semibold">Watch Trailer</Link>
+                    <Link to={`watch/trailer/movie-id=${movie.id}`} className="bg-yellow-600 hover:bg-yellow-500 duration-200 px-5 py-3 rounded-md font-semibold">Watch Trailer</Link>
                   </div>
 
                   <h1 id="title" className="font-bold text-3xl z-10">
