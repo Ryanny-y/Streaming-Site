@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarDays, faClock } from '@fortawesome/free-regular-svg-icons'
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { formatRatings, formatDuration } from '../../../utils/formatter'
+import { Link } from 'react-router-dom'
 
 const Hero = () => {
   const apiKey = import.meta.env.VITE_API_KEY;
@@ -74,18 +75,24 @@ const Hero = () => {
           {movieDetails.length > 0 ? (
             movieDetails.map(movie => (
               <swiper-slide key={movie.id} style={{ height: '100%' }}>
-                {console.log(movie)}
-                <div id="movie-container" className="container bg-black h-full flex flex-col gap-3 justify-end py-5">
-                  <h1 id="title" className='font-bold text-3xl'>{movie.original_title}</h1>
+                <div id="movie-container" className="container relative bg-black h-full flex flex-col gap-3 justify-end pb-10">
+                  <Link to={`/watch/movie/movie-id=${movie.id}`} className='absolute top-0 bottom-0 left-1/2 -translate-x-1/2 brightness-75'>
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`}
+                      alt="Movie Poster"
+                    />
+                  </Link>
+                  
+                  <h1 id="title" className='font-bold text-3xl z-10'>{movie.original_title}</h1>
 
-                  <div className="flex gap-3 items-center">
+                  <div className="flex gap-3 items-center z-10">
                     <div id="genres" className="flex items-center gap-1 text-sm font-medium">
                       {movie.genres.slice(0,3).map(genre => 
                         <span key={genre.id} className='bg-red-700 px-4 rounded-lg py-1'>{genre.name}</span>
                       )}
                     </div>
 
-                    <div className="flex items-center gap-1 text-sm">
+                    <div className="flex items-center gap-2 text-sm">
                       <p className='flex items-center gap-1'>
                         <FontAwesomeIcon icon={faCalendarDays}/>
                         {dayjs(movie.release_date).format('YYYY')}
@@ -100,6 +107,8 @@ const Hero = () => {
                       </p>
                     </div>
                   </div>
+
+                  <p className='text-sm md:w-1/2 font-meidum tracking-wider leading-snug z-10'>{movie.overview}</p>
                   
                 </div>
               </swiper-slide>
