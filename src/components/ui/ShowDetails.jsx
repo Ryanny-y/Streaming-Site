@@ -50,7 +50,7 @@ const ShowDetails = ({ details, filmType }) => {
             <p className="flex items-center gap-1">
               <FontAwesomeIcon icon={faClock} />
               {filmType === "movie" ? (
-                <span>{formatDuration(details.runtime)}</span>
+                <span>{formatDuration(details?.runtime)}</span>
               ) : (
                 <span>
                   Series/S {details.number_of_seasons}/EP{" "}
@@ -60,13 +60,13 @@ const ShowDetails = ({ details, filmType }) => {
             </p>
             <p className="flex items-center gap-1">
               <FontAwesomeIcon icon={faStar} className="text-yellow-400" />
-              <span>{formatRatings(details.vote_average)}</span>
+              <span>{formatRatings(details?.vote_average)}</span>
             </p>
           </div>
         </div>
 
         {/* SHOW PLOT */}
-        <p id="plot" className="">{details.overview}</p>
+        <p id="plot" className="">{details?.overview}</p>
 
         {/* OTHER DETAILS */}
         <div id="other_details" className="hidden pl-3 sm:flex flex-col gap-1 text-sm">
