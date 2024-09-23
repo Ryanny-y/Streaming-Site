@@ -78,26 +78,26 @@ const Reviews = ({ filmType, showId }) => {
             <div key={review.id} className="flex gap-8">
               <div id="avatar_poster" className="h-40 w-40 shrink-0">
                 <img
-                  src={`https://image.tmdb.org/t/p/w500${review.author_details.avatar_path}`}
+                  src={`https://image.tmdb.org/t/p/w500${review?.author_details?.avatar_path}`}
                   alt="Avatar Photo"
                   className="h-full w-full rounded-full text-center"
                 />
               </div>
 
               <div id="review_details" className="flex flex-col gap-2">
-                <h1 id="author_name">{review.author}</h1>
+                <h1 id="author_name">{review?.author}</h1>
                 <p id="last_updated">
-                  {dayjs(review.updated_at).format("MM/DD/YYYY")}
+                  {dayjs(review?.updated_at).format("MM/DD/YYYY")}
                 </p>
                 <p id="review" className="cursor-pointer">
                   {fullReview[review.id] ? (
                     <span onClick={() => handleToggleFullReview(review.id)}>
-                      {review.content}
+                      {review?.content}
                     </span>
                   ) : (
                     <>
                       <span onClick={() => handleToggleFullReview(review.id)}>
-                        {review.content.slice(0, 150)}
+                        {review?.content.slice(0, 150)}
                         <span className="text-red-500"> See More...</span>
                       </span>
                     </>

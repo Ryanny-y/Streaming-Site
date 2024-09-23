@@ -11,7 +11,7 @@ const ShowDetails = ({ details, filmType }) => {
 
       <div id="show_poster" className="basis-72 shrink-0">
         <img
-          src={`https://image.tmdb.org/t/p/w500/${details.poster_path}`}
+          src={`https://image.tmdb.org/t/p/w500/${details?.poster_path}`}
           alt="Show Poster"
           className="mx-auto max-w-80 w-full h-72 sm:h-80"
         />
@@ -21,8 +21,8 @@ const ShowDetails = ({ details, filmType }) => {
         {/* SHOW TITLE */}
         <h1 className="text-3xl tracking-wide font-semibold">
           {filmType === "movie"
-            ? `${details.original_title}`
-            : `${details.name}`}
+            ? `${details?.original_title}`
+            : `${details?.name}`}
         </h1>
 
         {/* GENRE AND TIME */}
@@ -45,7 +45,7 @@ const ShowDetails = ({ details, filmType }) => {
           >
             <p className="flex items-center gap-1">
               <FontAwesomeIcon icon={faCalendarDays} />
-              <span>{dayjs(details.release_date).format("YYYY")}</span>
+              <span>{dayjs(details?.release_date).format("YYYY")}</span>
             </p>
             <p className="flex items-center gap-1">
               <FontAwesomeIcon icon={faClock} />
@@ -53,8 +53,8 @@ const ShowDetails = ({ details, filmType }) => {
                 <span>{formatDuration(details?.runtime)}</span>
               ) : (
                 <span>
-                  Series/S {details.number_of_seasons}/EP{" "}
-                  {details.number_of_episodes}
+                  Series/S {details?.number_of_seasons}/EP{" "}
+                  {details?.number_of_episodes}
                 </span>
               )}
             </p>
@@ -73,7 +73,7 @@ const ShowDetails = ({ details, filmType }) => {
           <p className="flex items-start gap-1">
             Country:
             <span>
-              {details.production_countries
+              {details?.production_countries
                 .map((country) => country.name)
                 .join(", ")}
             </span>

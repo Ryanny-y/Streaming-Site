@@ -32,11 +32,11 @@ const MovieCard = ({ seriesId }) => {
             />
           </Link>
 
-          <WatchBtn filmType='tv' showId={details.id} options="?s=1&e=1"/>
+          <WatchBtn filmType='tv' showId={details?.id} options="?s=1&e=1"/>
           <WatchTrailerBtn />
 
           <h1 id="title" className="tracking-wide font-medium">
-            {details.original_title}
+            {details?.original_title}
           </h1>
 
           <div
@@ -46,11 +46,11 @@ const MovieCard = ({ seriesId }) => {
             <p>
               <FontAwesomeIcon icon={faStar} className="text-yellow-300" />
               <span className="ml-1">
-                {formatRatings(details.vote_average)}
+                {formatRatings(details?.vote_average)}
               </span>
             </p>
             <p>
-              Series/S {details.number_of_seasons}/EP{" "}
+              Series/S {details?.number_of_seasons}/EP{" "}
               {details.number_of_episodes}
             </p>
           </div>

@@ -29,19 +29,19 @@ const MovieCardNoBg = ({ movieId }) => {
           </Link>
 
           <h1 id="title" className="text-xl font-semibold tracking-wide">
-            {details.original_title}
+            {details?.original_title}
           </h1>
 
           <div id="rating_duration" className="flex items-center gap-3 text-sm">
             <p>
               <FontAwesomeIcon icon={faStar} className="text-yellow-300" />
               <span className="ml-1">
-                {formatRatings(details.vote_average)}
+                {formatRatings(details?.vote_average)}
               </span>
             </p>
             <p>
               <FontAwesomeIcon icon={faClock} />
-              <span className="ml-1">{formatDuration(details.runtime)}</span>
+              <span className="ml-1">{formatDuration(details?.runtime)}</span>
             </p>
           </div>
         </div>

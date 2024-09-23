@@ -13,9 +13,9 @@ const NowMovieCard = ({ movieDetails }) => {
         />
       </div>
       <div id="movie_details" className="text-sm">
-        <h1 id="title">{movieDetails.original_title}</h1>
+        <h1 id="title">{movieDetails?.original_title}</h1>
         <p id="production">Movie</p>
-        <p>{formatDate(movieDetails.release_date)}</p>
+        <p>{formatDate(movieDetails?.release_date)}</p>
       </div>
     </Link>
   );

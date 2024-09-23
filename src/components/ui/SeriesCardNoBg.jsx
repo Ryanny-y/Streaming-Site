@@ -28,19 +28,19 @@ const SeriesCardNoBg = ({ seriesId }) => {
           </Link>
 
           <h1 id="title" className="text-xl font-semibold tracking-wide">
-            {details.name}
+            {details?.name}
           </h1>
 
           <div id="rating_duration" className="flex items-center gap-4 text-sm">
             <p>
               <FontAwesomeIcon icon={faStar} className="text-yellow-300" />
               <span className="ml-1">
-                {formatRatings(details.vote_average)}
+                {formatRatings(details?.vote_average)}
               </span>
             </p>
             <p>
-              Series/S {details.number_of_seasons}/EP{" "}
-              {details.number_of_episodes}
+              Series/S {details?.number_of_seasons}/EP{" "}
+              {details?.number_of_episodes}
             </p>
           </div>
         </div>

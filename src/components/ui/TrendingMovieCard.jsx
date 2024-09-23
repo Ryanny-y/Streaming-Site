@@ -31,14 +31,14 @@ const TrendingMovieCard = ({ movieId }) => {
             <h1 id="time" className="absolute top-3 left-3 text-sm">
               <FontAwesomeIcon icon={faClock} />
               <span className="ml-1 tracking-wide">
-                {formatDuration(details.runtime)}
+                {formatDuration(details?.runtime)}
               </span>
             </h1>
 
             <h1 id="rating" className="absolute top-3 right-3 text-sm">
               <FontAwesomeIcon icon={faStar} className="text-yellow-300" />
               <span className="ml-1 tracking-wide">
-                {formatRatings(details.vote_average)}
+                {formatRatings(details?.vote_average)}
               </span>
             </h1>
           </Link>

@@ -40,7 +40,7 @@ const MovieCard = ({ movieId }) => {
           <WatchTrailerBtn filmType="movie" movieId={movieId}/>
 
           <h1 id="title" className="tracking-wide font-medium">
-            {details.original_title}
+            {details?.original_title}
           </h1>
 
           <div
@@ -49,11 +49,11 @@ const MovieCard = ({ movieId }) => {
           >
             <p className="flex items-center gap-1">
               <FontAwesomeIcon icon={faStar} className="text-yellow-300" />
-              <span>{formatRatings(details.vote_average)}</span>
+              <span>{formatRatings(details?.vote_average)}</span>
             </p>
             <p className="flex items-center gap-1">
               <FontAwesomeIcon icon={faClock} />
-              <span>{formatDuration(details.runtime)}</span>
+              <span>{formatDuration(details?.runtime)}</span>
             </p>
           </div>
         </div>
