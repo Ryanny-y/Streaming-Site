@@ -11,6 +11,7 @@ import Countries from './components/pages/Countries.jsx'
 import NotFound from './components/pages/NotFound.jsx';
 import AllShows from './components/pages/AllShows.jsx';
 import WatchShow from './components/pages/WatchShow.jsx';
+import Login from './auth/Login.jsx';
 
 register();
 const router = createBrowserRouter([
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: 'watch/:video/:show',
         element: <WatchShow />
+      },
+      {
+        path: 'login',
+        element: <Login />
       },
       {
         path: '*',

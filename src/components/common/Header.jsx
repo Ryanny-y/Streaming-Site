@@ -2,7 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark, faHeart } from "@fortawesome/free-regular-svg-icons";
 import HeaderNav from "../ui/header/HeaderNav";
 import SearchBar from "../ui/header/SearchBar";
- 
+import { Link } from "react-router-dom"; 
+
 const Header = () => {
 
   return (
@@ -40,11 +41,11 @@ const Header = () => {
 
         {/* LOGIN/REGISTER */}
         <div className="buttons text-white flex items-center gap-3 font-semibold ml-auto">
-          <button className="text-red-500 py-1 rounded-full hover:text-white duration-200">
+          <Link to='login' className="text-red-500 py-1 rounded-full hover:text-white duration-200">
             Login
-          </button>
+          </Link>
           <button className="bg-red-700 px-5 py-1 rounded-full hover:bg-light-red duration-200">
-            Register
+            Sign Up
           </button>
         </div>
       </div>
