@@ -1,40 +1,39 @@
-import { useState, useContext, useEffect } from "react";
-import { Link } from 'react-router-dom';
-import { AuthContext } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react"
+import { Link, useNavigate } from 'react-router-dom';
 
-const Login = () => {
-
+const SignUp = () => {
+  const [ username, setUsername ] = useState('');
+  const [ email, setEmail ] = useState('');
+  const [ password, setPassword ] = useState('');
+  const [ signedIn, setSignedIn ] = useState(false);
   const navigate = useNavigate();
 
-  
-  const { setUserData, setAccessToken, userData, accessToken } = useContext(AuthContext);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  
   useEffect(() => {
-    if(Object.keys.length && accessToken) {
-      navigate('/');
+    if(signedIn) {
+      navigate('/login');
     }
-  }, [accessToken, userData])
+  }, [signedIn])
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if(!username || !password) {
-      alert('Username and Password are required!');
+    if(!username || !password || !email) {
+      alert('All Fields are Required!');
       return;
     }
-
+    
     const BC_URL = import.meta.env.VITE_BC_URL;
+
     try {
-      const response = await fetch(`${BC_URL}/login`, {
+      const response = await fetch(`${BC_URL}/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
-        },
+        }, 
         body: JSON.stringify({
-          username,
+          username, 
+          email,
           password
         })
       })
@@ -46,20 +45,26 @@ const Login = () => {
       }
 
       const data = await response.json();
-      setUserData(data.user_data)
-      setAccessToken(data.access_token);
+
       setUsername('');
+      setEmail('');
       setPassword('');
+
+      setTimeout(() => {
+        setSignedIn(true);
+      }, 2000);
+
     } catch (error) {
       console.log(error);
     }
+
   }
 
   return (
     <main className="text-white">
-      <section className="container flex flex-col gap-1 items-center">
+      <div className="container flex flex-col gap-1 items-center">
         <form onSubmit={handleSubmit} className="flex flex-col gap-7 w-4/5 mx-auto py-10">
-          <h1 className="text-3xl font-semibold">Login</h1>
+          <h1 className="text-3xl font-semibold">Sign Up</h1>
 
           <input
             type="text"
@@ -67,6 +72,16 @@ const Login = () => {
             required
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Username"
+            className="rounded-md bg-transparent w-full h-full px-4 py-3 text-lg text-white outline-none placeholder:text-white  placeholder:opacity-90"
+            style={{ background: "#808080" }}
+          />
+
+          <input
+            type="email"
+            value={email}
+            required
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
             className="rounded-md bg-transparent w-full h-full px-4 py-3 text-lg text-white outline-none placeholder:text-white  placeholder:opacity-90"
             style={{ background: "#808080" }}
           />
@@ -81,8 +96,9 @@ const Login = () => {
             style={{ background: "#808080" }}
           />
 
-          <button className="bg-red-500 py-3 rounded-md">Sign In</button>
+          <button className="bg-red-500 py-3 rounded-md">Sign Up</button>
         </form>
+
 
         <p className="text-lg">or</p>
 
@@ -94,12 +110,14 @@ const Login = () => {
         </div>
 
         <div className="mt-10 w-4/5 mx-auto flex flex-wrap gap-2">
-          <h1 className="opacity-80">Don't Have an account?</h1>
-          <Link to={'/signup'}>Sign Up</Link>
+          <h1 className="opacity-80">Already have an Account?</h1>
+          <Link to={'/login'}>Sign In</Link>
         </div>
-      </section>
-    </main>
-  );
-};
 
-export default Login;
+      </div>
+    </main>
+
+  )
+}
+
+export default SignUp

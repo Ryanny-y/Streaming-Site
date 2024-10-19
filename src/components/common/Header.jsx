@@ -44,9 +44,9 @@ const Header = () => {
           <Link to='login' className="text-red-500 py-1 rounded-full hover:text-white duration-200">
             Login
           </Link>
-          <button className="bg-red-700 px-5 py-1 rounded-full hover:bg-light-red duration-200">
+          <Link to='signup' className="bg-red-700 px-5 py-1 rounded-full hover:bg-light-red duration-200">
             Sign Up
-          </button>
+          </Link>
         </div>
       </div>
     </header>

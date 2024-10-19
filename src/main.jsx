@@ -12,6 +12,7 @@ import NotFound from './components/pages/NotFound.jsx';
 import AllShows from './components/pages/AllShows.jsx';
 import WatchShow from './components/pages/WatchShow.jsx';
 import Login from './auth/Login.jsx';
+import SignUp from './auth/SignUp.jsx';
 
 register();
 const router = createBrowserRouter([
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />
+      },
+      {
+        path: 'signup',
+        element: <SignUp />
       },
       {
         path: '*',
