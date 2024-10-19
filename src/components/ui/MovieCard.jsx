@@ -7,6 +7,7 @@ import useGetShowDetails from "../../utils/hooks/useGetShowDetails";
 import { useEffect, useState } from "react";
 import { formatRatings, formatDuration } from "../../utils/formatter";
 import { Link } from "react-router-dom";
+import AddToBtns from './buttons/AddToBtns';
 
 const MovieCard = ({ movieId }) => {
   const [details, setDetails] = useState({});
@@ -25,14 +26,14 @@ const MovieCard = ({ movieId }) => {
     <>
       {Object.keys(details)?.length ? (
         <div
-          className="flex flex-col gap-3 pb-5 px-2 relative rounded-lg h-full"
+          className="flex flex-col gap-3 px-2 pb-5 relative rounded-lg h-full"
           style={{ background: "#333333" }}
         >
           <Link to={`/watch/movie/movie-id=${movieId}`} className="image_poster w-full h-64">
             <img
               src={`https://image.tmdb.org/t/p/w500/${details?.poster_path}`}
               alt="Movie Poster"
-              className="absolute top-0 w-full right-0 h-64 rounded-lg"
+              className="absolute top-0 w-full right-0 h-64 rounded-md"
             />
           </Link>
 
@@ -56,6 +57,8 @@ const MovieCard = ({ movieId }) => {
               <span>{formatDuration(details?.runtime)}</span>
             </p>
           </div>
+
+          <AddToBtns show_id={movieId}/>
         </div>
       ) : (
         <p>Loading</p>

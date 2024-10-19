@@ -3,8 +3,12 @@ import { faBookmark, faHeart } from "@fortawesome/free-regular-svg-icons";
 import HeaderNav from "../ui/header/HeaderNav";
 import SearchBar from "../ui/header/SearchBar";
 import { Link } from "react-router-dom"; 
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 const Header = () => {
+
+  const { userData, accessToken } = useContext(AuthContext);
 
   return (
     <header id="header" className="sticky top-0 py-5 z-40 bg-black">
@@ -26,6 +30,7 @@ const Header = () => {
             <p className="text-xs absolute top-8 group-hover:opacity-100 left-0 opacity-0 transition-all">
               Add To Watchlist
             </p>
+            {(Object.keys(userData).length > 0 && accessToken) && <p className="absolute text-xs -right-1 -top-2">0</p>}
           </span>
           <span className="relative group flex">
             <FontAwesomeIcon
