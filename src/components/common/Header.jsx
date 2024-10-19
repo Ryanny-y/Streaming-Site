@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { ActionContext } from "../../context/ActionsContext";
 
 const Header = () => {
 
@@ -13,7 +14,7 @@ const Header = () => {
   const { userData, accessToken } = useContext(AuthContext);
   const [ watchlistCount, setWatchlistCount ] = useState(0);
   const [ favoritesCount, setFavoritesCount ] = useState(0);
-  const BC_URL = import.meta.env.VITE_BC_URL;
+  const { fetchList, added } = useContext(ActionContext);
 
   const handleIconClick = () => {
     if(!Object.keys(userData) || !accessToken) {
@@ -21,42 +22,14 @@ const Header = () => {
     } else {
       navigate('/movies')
     }
-    
-  };
-
-  const fetchAPI = async (subpath, controller) => {
-    try {
-      const response = await fetch(`${BC_URL}/${subpath}/${userData?.id}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`
-        },
-        signal: controller.signal
-      })
-
-      if(!response.ok) {
-        const errData = await response.json();
-        const errMsg = errData.message || errData.statusText;
-        throw new Error(errMsg);
-      }
-      
-      const data = await response.json();
-      return data;
-
-    } catch (error) {
-      navigate(0);
-      alert(error.message)
-    }
-
   };
 
   useEffect(() => {
     const controller = new AbortController();
     if(Object.keys(userData) && accessToken) {
       const fetchAll = async () => {
-        const watchlists = await fetchAPI('watchlist', controller);
-        const favorites = await fetchAPI('favorites', controller);
+        const watchlists = await fetchList('watchlist', controller);
+        const favorites = await fetchList('favorites', controller);
 
         setWatchlistCount(watchlists.watchlist.length);
         setFavoritesCount(favorites.favorites.length);
@@ -66,7 +39,7 @@ const Header = () => {
     return () => {
       controller.abort();
     }
-  }, [userData, accessToken])
+  }, [userData, accessToken, added])
 
   return (
     <header id="header" className="sticky top-0 py-5 z-40 bg-black">

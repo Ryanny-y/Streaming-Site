@@ -12,6 +12,32 @@ const ActionProvider = ({ children }) => {
   const [ added, setAdded ] = useState(false);
 
   // GET FAVORITES/WATCHLIST
+  const fetchList = async (subpath, controller) => {
+    try {
+      const response = await fetch(`${BC_URL}/${subpath}/${userData?.id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+        },
+        signal: controller.signal
+      })
+
+      if(!response.ok) {
+        const errData = await response.json();
+        const errMsg = errData.message || errData.statusText;
+        throw new Error(errMsg);
+      }
+      
+      const data = await response.json();
+      return data;
+
+    } catch (error) {
+      navigate(0);
+      alert(error.message)
+    }
+
+  };
 
   // ADD
   const isAuth = useCallback(() => {
@@ -65,7 +91,7 @@ const ActionProvider = ({ children }) => {
 
 
   const value = {
-    handleAdd
+    handleAdd, fetchList, added
   }
 
   return (
