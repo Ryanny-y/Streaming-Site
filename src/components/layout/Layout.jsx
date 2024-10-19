@@ -1,13 +1,16 @@
 import Header from "../common/Header";
 import { Outlet } from "react-router-dom";
 import AuthProvider from "../../context/AuthContext";
+import ActionProvider from "../../context/ActionsContext";
 
 const Layout = () => {
   return (
     <>
       <AuthProvider>
-        <Header />
-        <Outlet />
+        <ActionProvider>
+          <Header />
+          <Outlet />
+        </ActionProvider>
       </AuthProvider>
     </>
   );
