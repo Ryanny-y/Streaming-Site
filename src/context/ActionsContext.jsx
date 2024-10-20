@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const ActionContext = createContext();
 
-const ActionProvider = ({ children }) => {
+const ActionProvider = ({ children, setMessage }) => {
 
   const { userData, accessToken } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ const ActionProvider = ({ children }) => {
 
     } catch (error) {
       navigate(0);
-      alert(error.message)
+      setMessage(error.message)
     }
   };
 
@@ -51,7 +51,7 @@ const ActionProvider = ({ children }) => {
     if(!isAuth()) return;
 
     if(!show_id) {
-      alert('Show Id is required');
+      setMessage('Show Id is required');
       return;
     }
 
@@ -75,11 +75,12 @@ const ActionProvider = ({ children }) => {
       }
 
       const data = await response.json();
-      console.log(data);
+      setMessage(data.message);
       setAdded(prev => !prev);
 
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
+      setMessage(error.message)
     }
   };
   
