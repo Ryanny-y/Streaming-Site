@@ -36,7 +36,6 @@ const ActionProvider = ({ children }) => {
       navigate(0);
       alert(error.message)
     }
-
   };
 
   // ADD
@@ -48,7 +47,6 @@ const ActionProvider = ({ children }) => {
     return true;
   }, [userData, accessToken, navigate])
   
-
   const handleAdd = async (show_id, subpath) => {
     if(!isAuth()) return;
 
@@ -66,7 +64,7 @@ const ActionProvider = ({ children }) => {
         },
         body: JSON.stringify({
           user_id: userData?.id,
-          show_id
+          show_id: String(show_id)
         })
       })
 
@@ -85,8 +83,6 @@ const ActionProvider = ({ children }) => {
     }
   };
   
-
-
   // REMOVE
 
 

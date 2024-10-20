@@ -77,14 +77,18 @@ const Header = () => {
         </div>
 
         {/* LOGIN/REGISTER */}
-        <div className="buttons text-white flex items-center gap-3 font-semibold ml-auto">
-          <Link to='login' className="text-red-500 py-1 rounded-full hover:text-white duration-200">
-            Login
-          </Link>
-          <Link to='signup' className="bg-red-700 px-5 py-1 rounded-full hover:bg-light-red duration-200">
-            Sign Up
-          </Link>
-        </div>
+        {!Object.keys(userData).length > 0 && !accessToken &&
+          <div className="buttons text-white flex items-center gap-3 font-semibold ml-auto">
+            <Link to='login' className="text-red-500 py-1 rounded-full hover:text-white duration-200">
+              Login
+            </Link>
+            <Link to='signup' className="bg-red-700 px-5 py-1 rounded-full hover:bg-light-red duration-200">
+              Sign Up
+            </Link>
+          </div>
+        }
+
+        {/* Logout */}
       </div>
     </header>
   );

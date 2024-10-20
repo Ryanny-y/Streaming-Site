@@ -7,6 +7,7 @@ import ShowDetails from "../ui/ShowDetails";
 import Recommendation from "../ui/Recommendation";
 import ShowVideo from "../ui/ShowVideo";
 import Reviews from "../ui/Reviews";
+import AddToBtns from '../ui/buttons/AddToBtns'
 
 const WatchShow = () => {
   const { video, show = "" } = useParams();
@@ -50,7 +51,10 @@ const WatchShow = () => {
                 </div>
               )}
             </section>
-
+                
+            {/* Add To */}
+            <AddToBtns show_id={showId}/>
+            
             {/* Show Details */}
             <ShowDetails filmType={filmType} details={details} />
 

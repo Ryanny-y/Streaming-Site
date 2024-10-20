@@ -1,13 +1,13 @@
 import { useState, useContext, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 
   const navigate = useNavigate();
+  const setMessage = useOutletContext();
 
-  
   const { setUserData, setAccessToken, userData, accessToken } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -51,7 +51,7 @@ const Login = () => {
       setUsername('');
       setPassword('');
     } catch (error) {
-      console.log(error);
+      setMessage(error.message);
     }
   }
 

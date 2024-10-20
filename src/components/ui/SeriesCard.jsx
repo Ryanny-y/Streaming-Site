@@ -6,6 +6,7 @@ import useGetShowDetails from "../../utils/hooks/useGetShowDetails";
 import { useEffect, useState } from "react";
 import { formatRatings } from "../../utils/formatter";
 import { Link } from "react-router-dom";
+import AddToBtns from './buttons/AddToBtns'
 
 const MovieCard = ({ seriesId }) => {
   const [details, setDetails] = useState({});
@@ -54,6 +55,8 @@ const MovieCard = ({ seriesId }) => {
               {details.number_of_episodes}
             </p>
           </div>
+
+          <AddToBtns show_id={seriesId}/>
         </div>
       ) : (
         <p>Loading</p>

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 
 const SignUp = () => {
   const [ username, setUsername ] = useState('');
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ signedIn, setSignedIn ] = useState(false);
+  const setMessage = useOutletContext();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,6 +46,7 @@ const SignUp = () => {
       }
 
       const data = await response.json();
+      setMessage(data.message);
 
       setUsername('');
       setEmail('');
@@ -55,7 +57,7 @@ const SignUp = () => {
       }, 2000);
 
     } catch (error) {
-      console.log(error);
+      setMessage(error.message);
     }
 
   }
